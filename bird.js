@@ -16,7 +16,7 @@ randFloat = (min, max, after) => {
 };
 
 //generateur d'oiseau
-birdGenerator = (begin, heightPosition, beatSpeed, beatRealismBehaviour) => {
+birdGenerator = (speed, beginDelay, heightPosition, beatSpeed, beatRealismBehaviour) => {
 	//def birdContainer
 	//TODO: verified
 	const birdContainer = document.createElement('div');
@@ -47,13 +47,14 @@ birdGenerator = (begin, heightPosition, beatSpeed, beatRealismBehaviour) => {
 	//TODO: verified
 	const getPositionClass = document.querySelector('.bird-container');
 	getPositionClass.style.setProperty('--heightPosition', heightPosition + '%'); //position en hauteur de depart varie de 1 a 40 pourcent
-	getPositionClass.style.setProperty('--begin', begin + 's'); //position en largeur de depart
+	getPositionClass.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart 
+  getPositionClass.style.setProperty('--speed', speed + 's'); //vitesse de deplacement
 
 	//TODO: fix
 	// getPositionClass.style.setProperty('--birdSpeed', speed + 's'); //vitesse de chaque oiseau pour atteindre sa destination varie entre 5 a 10s
 };
 
 //CALLING
-//args => X_position, Y_position, beatSpeed, beatRealismBehaviour
-birdGenerator(0.5, randInt(1, 40), randFloat(0.5, 1.5, 1), randFloat(0, 2, 2));
-birdGenerator(1, randInt(1, 40), randFloat(0.5, 1.5, 1), randFloat(0, 2, 2));
+//args => speed, beginDelay, heightPosition, beatSpeed, beatRealismBehaviour
+
+setInterval(birdGenerator(randInt(5, 10), 0, randInt(1, 40), randFloat(0.5, 1.5, 1), randFloat(0, 2, 2)),300);

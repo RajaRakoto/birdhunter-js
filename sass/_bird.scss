@@ -47,7 +47,7 @@ DESCRIPTION (animation deplacement):
 	// width: 2vh; //cible size
 	// height: 2vh;
 	top: var(--heightPosition); //valeur Y
-	left: -10%; //default value = -10%
+	left: -10%; //const
 	transform: scale(0) translateX(-10vw);
 	will-change: transform;
 
@@ -57,10 +57,10 @@ DESCRIPTION (animation deplacement):
 
 	border: solid orangered 5px;
 
-	//TODO: generate this in script
+	//TODO: verified
 	&--shift {
-		animation-duration: 5s; //vitesse de deplacement
-		animation-delay: var(--begin); //position de depart par rapport a X
+		animation-duration: var(--speed); //vitesse de deplacement
+		animation-delay: var(--beginDelay); //delai de depart 
 	}
 }
 
