@@ -18,36 +18,15 @@
 
 	/*
 	FEATURES:
-		- On varie la valeur de `animation-duration` entre [0.5;1.5] pour un battement different pour chaque oiseau
-	  - On varie la valeur de `animation-delay` entre [0;5] pour un battement plus realiste
+		- On varie la valeur de `animation-duration` entre [0.5;1.5] pour une vitesse de battement different pour chaque oiseau
+	  - On varie la valeur de `animation-delay -> --beat-behaviour` entre [0;5] pour un battement plus realiste
 	*/
 
-	/*
-	REMARQUE: 
-		- Commenter "bird-container pour desactiver le deplacement des oiseaux"
-	*/
-
-	//TODO: generate this in script
+	//TODO: verified
 	&--beat {
-		animation-duration: 1.2s;
-		animation-delay: 5s;
+		animation-duration: var(--beat-speed);
+		animation-delay: var(--beat-realismBehaviour);
 	}
-
-	//TODO: to delete
-	// &--two {
-	// 	animation-duration: 0.5s;
-	// 	animation-delay: 2s;
-	// }
-
-	// &--three {
-	// 	animation-duration: 1.5s;
-	// 	animation-delay: 3s;
-	// }
-
-	// &--four {
-	// 	animation-duration: 0.8s;
-	// 	animation-delay: 0s;
-	// }
 }
 
 /*
@@ -60,15 +39,17 @@ DESCRIPTION (animation deplacement):
 
 /*
 	FEATURES:
-		- On varie la position de depart Y de chaque [valeur max de 50% pour que l'oiseau ne vole pas trop bas]
-		- On varie la valeur de `animation-duration` entre [5;30] pour une vitesse different pour chaque oiseau
-	  - On varie la valeur de `animation-delay` entre [0;5] pour un battement plus realiste
+		- On varie la position de depart Y de chaque [valeur max de 40% pour que l'oiseau ne vole pas trop bas]
+		- On varie la valeur de `animation-duration` pour une vitesse different pour chaque oiseau
+	  - On varie la valeur de `animation-delay` pour un battement plus realiste
 		- On varie `translateY` de `transform` tout les N seconde pour eviter un deplacement horizontale constante
 	*/
 
 .bird-container {
 	position: absolute;
-	top: 25%;
+	// width: 2vh; //cible size
+	// height: 2vh;
+	top: var(--startingPostition); //valeur Y
 	left: -10%;
 	transform: scale(0) translateX(-10vw);
 	will-change: transform;
@@ -81,25 +62,9 @@ DESCRIPTION (animation deplacement):
 
 	//TODO: generate this in script
 	&--shift {
-		animation-duration: 3s;
-		animation-delay: 0;
+		animation-duration: 5s;
+		animation-delay: 0s;
 	}
-
-	//TODO: to delete
-	// &--two {
-	// 	animation-duration: 16s;
-	// 	animation-delay: 1s;
-	// }
-
-	// &--three {
-	// 	animation-duration: 14.6s;
-	// 	animation-delay: 9.5s;
-	// }
-
-	// &--four {
-	// 	animation-duration: 16s;
-	// 	animation-delay: 10.25s;
-	// }
 }
 
 @keyframes fly-cycle {
@@ -143,37 +108,3 @@ DESCRIPTION (animation deplacement):
 		transform: translateY(0vh) translateX(110vw) scale(0.6);
 	}
 }
-
-// @keyframes fly-right-two {
-// 	0% {
-// 		transform: translateY(-2vh) translateX(-10vw) scale(0.5);
-// 	}
-
-// 	10% {
-// 		transform: translateY(0vh) translateX(10vw) scale(0.4);
-// 	}
-
-// 	20% {
-// 		transform: translateY(-4vh) translateX(30vw) scale(0.6);
-// 	}
-
-// 	30% {
-// 		transform: translateY(1vh) translateX(50vw) scale(0.45);
-// 	}
-
-// 	40% {
-// 		transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
-// 	}
-
-// 	50% {
-// 		transform: translateY(0vh) translateX(90vw) scale(0.45);
-// 	}
-
-// 	51% {
-// 		transform: translateY(0vh) translateX(110vw) scale(0.45);
-// 	}
-
-// 	100% {
-// 		transform: translateY(0vh) translateX(110vw) scale(0.45);
-// 	}
-// }
