@@ -1,0 +1,179 @@
+.bird {
+	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells-new.svg);
+	background-size: auto 100%;
+	width: 88px; //const
+	height: 125px; //const
+	will-change: background-position;
+
+	animation-name: fly-cycle; //battement des ailes
+	animation-timing-function: steps(10);
+	animation-iteration-count: infinite; //boucler l'animation
+
+	/*
+	DESCRIPTION (animation battement):
+	 => On definisse ici l'animation de battement pour chaque oiseau
+		- animation-duration: duration du battement des ailes - c'est la duree d'une animation pour parcourir un cycle.
+		- animation-delay: temps d'apparition (debut de l'animation) - plus sa valeur est grande, plus l'animation mettra du temps a demarrer 
+	*/
+
+	/*
+	FEATURES:
+		- On varie la valeur de `animation-duration` entre [0.5;1.5] pour un battement different pour chaque oiseau
+	  - On varie la valeur de `animation-delay` entre [0;5] pour un battement plus realiste
+	*/
+
+	/*
+	REMARQUE: 
+		- Commenter "bird-container pour desactiver le deplacement des oiseaux"
+	*/
+
+	//TODO: generate this in script
+	&--beat {
+		animation-duration: 1.2s;
+		animation-delay: 5s;
+	}
+
+	//TODO: to delete
+	// &--two {
+	// 	animation-duration: 0.5s;
+	// 	animation-delay: 2s;
+	// }
+
+	// &--three {
+	// 	animation-duration: 1.5s;
+	// 	animation-delay: 3s;
+	// }
+
+	// &--four {
+	// 	animation-duration: 0.8s;
+	// 	animation-delay: 0s;
+	// }
+}
+
+/*
+DESCRIPTION (animation deplacement):
+	=> "bird-container" qui charge du deplacement(vitesse, direction, ...) de chaque oiseau
+	- top: position de depart par rapport a l'axe Y
+	- left: position de depart par rapport a l'axe X (on passe une valeur negative pour que les oiseaux)
+	- animation-duration: vitesse par seconde de deplacement des oiseaux
+*/
+
+/*
+	FEATURES:
+		- On varie la position de depart Y de chaque [valeur max de 50% pour que l'oiseau ne vole pas trop bas]
+		- On varie la valeur de `animation-duration` entre [5;30] pour une vitesse different pour chaque oiseau
+	  - On varie la valeur de `animation-delay` entre [0;5] pour un battement plus realiste
+		- On varie `translateY` de `transform` tout les N seconde pour eviter un deplacement horizontale constante
+	*/
+
+.bird-container {
+	position: absolute;
+	top: 25%;
+	left: -10%;
+	transform: scale(0) translateX(-10vw);
+	will-change: transform;
+
+	animation-name: fly-right; //deplacement vers la droite
+	animation-timing-function: linear; //deplacement lineaire
+	animation-iteration-count: infinite; //boucler l'animation
+
+	border: solid orangered 5px;
+
+	//TODO: generate this in script
+	&--shift {
+		animation-duration: 3s;
+		animation-delay: 0;
+	}
+
+	//TODO: to delete
+	// &--two {
+	// 	animation-duration: 16s;
+	// 	animation-delay: 1s;
+	// }
+
+	// &--three {
+	// 	animation-duration: 14.6s;
+	// 	animation-delay: 9.5s;
+	// }
+
+	// &--four {
+	// 	animation-duration: 16s;
+	// 	animation-delay: 10.25s;
+	// }
+}
+
+@keyframes fly-cycle {
+	100% {
+		background-position: -900px 0;
+	}
+}
+
+//TODO: translateY value random
+
+@keyframes fly-right {
+	0% {
+		transform: scale(0.3) translateX(-10vw);
+	}
+
+	10% {
+		transform: translateY(10vh) translateX(10vw) scale(0.4);
+	}
+
+	20% {
+		transform: translateY(5vh) translateX(30vw) scale(0.5);
+	}
+
+	30% {
+		transform: translateY(12vh) translateX(50vw) scale(0.6);
+	}
+
+	40% {
+		transform: translateY(5vh) translateX(70vw) scale(0.6);
+	}
+
+	50% {
+		transform: translateY(0vh) translateX(90vw) scale(0.6);
+	}
+
+	60% {
+		transform: translateY(4vh) translateX(110vw) scale(0.6);
+	}
+
+	100% {
+		transform: translateY(0vh) translateX(110vw) scale(0.6);
+	}
+}
+
+// @keyframes fly-right-two {
+// 	0% {
+// 		transform: translateY(-2vh) translateX(-10vw) scale(0.5);
+// 	}
+
+// 	10% {
+// 		transform: translateY(0vh) translateX(10vw) scale(0.4);
+// 	}
+
+// 	20% {
+// 		transform: translateY(-4vh) translateX(30vw) scale(0.6);
+// 	}
+
+// 	30% {
+// 		transform: translateY(1vh) translateX(50vw) scale(0.45);
+// 	}
+
+// 	40% {
+// 		transform: translateY(-2.5vh) translateX(70vw) scale(0.5);
+// 	}
+
+// 	50% {
+// 		transform: translateY(0vh) translateX(90vw) scale(0.45);
+// 	}
+
+// 	51% {
+// 		transform: translateY(0vh) translateX(110vw) scale(0.45);
+// 	}
+
+// 	100% {
+// 		transform: translateY(0vh) translateX(110vw) scale(0.45);
+// 	}
+// }
