@@ -1,0 +1,20 @@
+/* background settings */
+//TODO: verified
+#environment {
+	z-index: 1;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background-image: linear-gradient(
+			to bottom,
+			rgba(228, 144, 54, 0.568) 0%,
+			rgba(238, 115, 14, 0.589) 100%
+		),
+		url('../img/bg0.jpg');
+	background-blend-mode: soft-light;
+	background-size: cover;
+	background-position: center center;
+}
