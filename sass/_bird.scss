@@ -24,8 +24,8 @@
 
 	//TODO: verified
 	&--beat {
-		animation-duration: var(--beat-speed);
-		animation-delay: var(--beat-realismBehaviour);
+		animation-duration: var(--beatSpeed);
+		animation-delay: var(--beatRealismBehaviour);
 	}
 }
 
@@ -60,7 +60,7 @@ DESCRIPTION (animation deplacement):
 	//TODO: generate this in script
 	&--shift {
 		animation-duration: 5s; //vitesse de deplacement
-		animation-delay: var(--startingPosition); //position de depart par rapport a X
+		animation-delay: var(--begin); //position de depart par rapport a X
 	}
 }
 
