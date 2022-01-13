@@ -39,9 +39,6 @@ DESCRIPTION (animation deplacement):
 
 /*
 	FEATURES:
-		- On varie la position de depart Y de chaque [valeur max de 40% pour que l'oiseau ne vole pas trop bas]
-		- On varie la valeur de `animation-duration` pour une vitesse different pour chaque oiseau
-	  - On varie la valeur de `animation-delay` pour un battement plus realiste
 		- On varie `translateY` de `transform` tout les N seconde pour eviter un deplacement horizontale constante
 	*/
 
@@ -49,8 +46,8 @@ DESCRIPTION (animation deplacement):
 	position: absolute;
 	// width: 2vh; //cible size
 	// height: 2vh;
-	top: var(--startingPostition); //valeur Y
-	left: -10%;
+	top: var(--heightPosition); //valeur Y
+	left: -10%; //default value = -10%
 	transform: scale(0) translateX(-10vw);
 	will-change: transform;
 
@@ -62,8 +59,8 @@ DESCRIPTION (animation deplacement):
 
 	//TODO: generate this in script
 	&--shift {
-		animation-duration: 5s;
-		animation-delay: 0s;
+		animation-duration: 5s; //vitesse de deplacement
+		animation-delay: var(--startingPosition); //position de depart par rapport a X
 	}
 }
 
