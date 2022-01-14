@@ -69,6 +69,13 @@ class Bird {
 		// }
 
 		//=====================================================
+
+		//TODO: verified
+		newBirdContainer.addEventListener('click', () => {
+			const kill = document.getElementById(newBirdContainer.id);
+			kill.remove();
+			console.log(newBirdContainer.id + ' killed 💀 !');
+		});
 	};
 }
 
@@ -95,8 +102,8 @@ beatRealismBehaviour[0;2.xx]
 
 //TODO: verified
 let count = 1; //const
-let birdNumbers = 50; //nombre d'oiseau a afficher (max 30)
-let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (min 1)
+let birdNumbers = 10; //nombre d'oiseau a afficher (max 30)
+let birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
 
 let bird = new Bird();
 
@@ -107,7 +114,7 @@ birdObject = () => {
 		randInt(1, 999), //max 999
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randInt(4, 8), //(min 5)
+		randFloat(3, 6, 2), //perso
 		randFloat(0.5, 1.5, 1), //const
 		randFloat(0, 2, 2), //const
 	);
