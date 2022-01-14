@@ -1,58 +1,75 @@
-// /* 
-// BIRDGENERATOR() => (1 bird[object] = 1 bird-container[--shift] + 1 bird[--beat]) 
-// */
+class Bird {
+	//TODO: verified
+	createDivElement = () => {
+		return document.createElement('div');
+	};
 
-// //genere un nombre entier aleatoire entre min et max
-// //TODO: verified
-// randInt = (min, max) => {
-// 	return Math.round(Math.random() * max + min);
-// };
+	getEnv = () => {
+		return document.getElementById('environment');
+	};
 
-// //genere un nombre decimal aleatoire entre min et max a N (=after) chiffre apres virgule
-// //TODO: verified
-// randFloat = (min, max, after) => {
-// 	let randCore = Math.random() * max + min;
-// 	return randCore.toFixed(after);
-// };
+	//TODO: verified
+	birdGen = (
+		heightPosition,
+		beginDelay,
+		speed,
+		beatSpeed,
+		beatRealismBehaviour,
+	) => {
+		const newBirdContainer = this.createDivElement();
+		newBirdContainer.className = 'bird-container bird-container--shift';
+		newBirdContainer.style.setProperty(
+			'--heightPosition',
+			heightPosition + '%',
+		); //position en hauteur de depart varie de 1 a 40 pourcent
+		newBirdContainer.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart (ex: 0 si aucun delai)
+		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de deplacement pour parcourir l'environnement varie de 5 a N seconde
 
-// //generateur d'oiseau
-// birdGenerator = (speed, beginDelay, heightPosition, beatSpeed, beatRealismBehaviour) => {
-// 	//def birdContainer
-// 	//TODO: OK
-// 	const birdContainer = document.createElement('div');
-// 	birdContainer.classList.toggle('bird-container');
-// 	birdContainer.classList.toggle('bird-container--shift');
+		const newBird = this.createDivElement();
+		newBird.className = 'bird bird--beat';
+		newBird.style.setProperty('--beatSpeed', beatSpeed + 's'); //vitesse de battement varie de 0.5 a 1.5 seconde
+		newBird.style.setProperty(
+			'--beatRealismBehaviour',
+			beatRealismBehaviour + 's',
+		); //comportement du battement varie de 0 a 2,xx seconde
 
-// 	//def bird
-// 	//TODO: OK
-// 	const bird = document.createElement('div');
-// 	bird.classList.toggle('bird');
-// 	bird.classList.toggle('bird--beat');
+		//ajouter l'element 'newBird' en tant que fils de 'newBirdContainer'
+		newBirdContainer.appendChild(newBird);
+		let birdObject = newBirdContainer;
 
-// 	//def environment (= background)
-// 	//TODO: OK
-// 	const env = document.getElementById('environment');
+		const env = this.getEnv();
+		const node = document.getElementById('node');
 
-// 	//inject bird to birdContainer and environment
-// 	//TODO: OK
-// 	birdContainer.appendChild(bird);
-// 	env.appendChild(birdContainer);
+		//injecter 'birdObject' avant 'node' dans 'env'
+		env.insertBefore(birdObject, node);
+	};
+}
 
-// 	//beat's settings
-// 	//TODO: verified
-// 	bird.style.setProperty('--beatSpeed', beatSpeed + 's'); //vitesse de battement varie de 0.5 a 1.5 seconde
-// 	bird.style.setProperty('--beatRealismBehaviour', beatRealismBehaviour + 's'); //comportement du battement varie de 0 a 2,xx seconde
+//TODO: verified
+randInt = (min, max) => {
+	return Math.round(Math.random() * max + min);
+};
 
-// 	//speed|XYposition's settings
-// 	//TODO: verified
-// 	const getPositionClass = document.querySelector('.bird-container');
-// 	getPositionClass.style.setProperty('--heightPosition', heightPosition + '%'); //position en hauteur de depart varie de 1 a 40 pourcent
-// 	getPositionClass.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart 
-//   getPositionClass.style.setProperty('--speed', speed + 's'); //vitesse de deplacement
+randFloat = (min, max, after) => {
+	let randCore = Math.random() * max + min;
+	return randCore.toFixed(after);
+};
 
-// };
+let bird = new Bird();
 
-// //CALLING
-// //args => speed, beginDelay, heightPosition, beatSpeed, beatRealismBehaviour
+/*
+--- ARGS ---
+heightPosition[1;40], 
+beginDelay[0,N], 
+speed[5,N], 
+beatSpeed[0.5;1.5], 
+beatRealismBehaviour[0;2.xx]
+*/
 
-// setInterval(birdGenerator(randInt(5, 10), 0, randInt(1, 40), randFloat(0.5, 1.5, 1), randFloat(0, 2, 2)),300);
+bird.birdGen(
+	randInt(1, 40),
+	randFloat(0, 1.5, 2),
+	randInt(2, 10),
+	randFloat(0.5, 1.5, 1),
+	randFloat(0, 2, 2),
+);
