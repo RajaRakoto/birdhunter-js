@@ -46,7 +46,7 @@ DESCRIPTION (animation deplacement):
 	position: absolute;
 	// width: 2vh; //cible size
 	// height: 2vh;
-	top: var(--heightPosition); //valeur Y
+	top: var(--heightPosition); //valeur Y de depart
 	left: -10%; //const
 	transform: scale(0) translateX(-10vw);
 	will-change: transform;
