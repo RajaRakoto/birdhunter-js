@@ -7,19 +7,25 @@ class Bird {
 		return document.getElementById('environment');
 	};
 
+  //TODO: fix decal bug
 	autoDestruct = () => {
-		alert('Destruct !');
+    const env = this.getEnv();
+    console.log(env.firstChild.nextSibling);
+    const toDel = env.firstChild.nextSibling;
+    toDel.remove();
 	};
 
 	birdGen = (
+		id,
 		heightPosition,
 		beginDelay,
 		speed,
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
-		//TODO: verified
+		//TODO: add ID
 		const newBirdContainer = this.createDivElement();
+		newBirdContainer.id = 'bird-id-' + id; //id maker
 		newBirdContainer.className = 'bird-container bird-container--shift';
 		newBirdContainer.style.setProperty(
 			'--heightPosition',
@@ -58,7 +64,7 @@ class Bird {
 		let lifeTime = speed * 1000; //duree de vie d'un oiseau
 		console.log('lifeTime: ' + lifeTime + 'ms');
 
-		//delait de <lifeTime> avant l'execution de l'autodestruction
+		//delait de l'execution de l'autodestruction par rapport a la duree de vie "lifeTime"
 		setTimeout(this.autoDestruct, lifeTime);
 
 		//=====================================================
@@ -87,14 +93,15 @@ beatRealismBehaviour[0;2.xx]
 
 //TODO: verified
 count = 1;
-birdNumbers = 1; //nombre d'oiseau a afficher
-birdInterval = 2000; //interval d'apparition en milliseconde
+birdNumbers = 10; //nombre d'oiseau a afficher
+birdInterval = 2 * 1000; //interval d'apparition en milliseconde 
 let bird = new Bird();
 
 //TODO: verified
 //On englobe le generateur d'oiseau dans une fonction afin de poivoir boucler dans setInterval
 birdObject = () => {
 	bird.birdGen(
+		randInt(1, 999),
 		randInt(1, 40),
 		randFloat(0, 1.5, 2),
 		randInt(2, 10),
