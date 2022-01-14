@@ -1,5 +1,4 @@
 class Bird {
-	//TODO: verified
 	createDivElement = () => {
 		return document.createElement('div');
 	};
@@ -8,7 +7,10 @@ class Bird {
 		return document.getElementById('environment');
 	};
 
-	//TODO: verified
+	autoDestruct = () => {
+		alert('Destruct !');
+	};
+
 	birdGen = (
 		heightPosition,
 		beginDelay,
@@ -16,6 +18,7 @@ class Bird {
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
+		//TODO: verified
 		const newBirdContainer = this.createDivElement();
 		newBirdContainer.className = 'bird-container bird-container--shift';
 		newBirdContainer.style.setProperty(
@@ -25,6 +28,7 @@ class Bird {
 		newBirdContainer.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart (ex: 0 si aucun delai)
 		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de deplacement pour parcourir l'environnement varie de 5 a N seconde
 
+		//TODO: verified
 		const newBird = this.createDivElement();
 		newBird.className = 'bird bird--beat';
 		newBird.style.setProperty('--beatSpeed', beatSpeed + 's'); //vitesse de battement varie de 0.5 a 1.5 seconde
@@ -33,15 +37,31 @@ class Bird {
 			beatRealismBehaviour + 's',
 		); //comportement du battement varie de 0 a 2,xx seconde
 
+		//TODO: verified
 		//ajouter l'element 'newBird' en tant que fils de 'newBirdContainer'
 		newBirdContainer.appendChild(newBird);
 		let birdObject = newBirdContainer;
-
 		const env = this.getEnv();
-		const node = document.getElementById('node');
+		const entryPoint = document.getElementById('entryPoint');
+		//injecter 'birdObject' avant 'entryPoint' dans 'env'
+		env.insertBefore(birdObject, entryPoint);
 
-		//injecter 'birdObject' avant 'node' dans 'env'
-		env.insertBefore(birdObject, node);
+		//=====================================================
+
+		/*
+    TODO: recuperer la valeur de speed (duree du parcours)
+    TODO: duree auto destruction (lifeTime) = speed 
+    TODO: chaque instance declanche une auto destruction de ce dernier apres la duree du 'lifeTime'
+    */
+
+		console.log('speed: ' + speed + 's');
+		let lifeTime = speed * 1000; //duree de vie d'un oiseau
+		console.log('lifeTime: ' + lifeTime + 'ms');
+
+		//delait de <lifeTime> avant l'execution de l'autodestruction
+		setTimeout(this.autoDestruct, lifeTime);
+
+		//=====================================================
 	};
 }
 
@@ -50,6 +70,7 @@ randInt = (min, max) => {
 	return Math.round(Math.random() * max + min);
 };
 
+//TODO: verified
 randFloat = (min, max, after) => {
 	let randCore = Math.random() * max + min;
 	return randCore.toFixed(after);
@@ -64,11 +85,13 @@ beatSpeed[0.5;1.5],
 beatRealismBehaviour[0;2.xx]
 */
 
+//TODO: verified
 count = 1;
-birdNumbers = 3; //nombre d'oiseau a afficher
+birdNumbers = 1; //nombre d'oiseau a afficher
 birdInterval = 2000; //interval d'apparition en milliseconde
 let bird = new Bird();
 
+//TODO: verified
 //On englobe le generateur d'oiseau dans une fonction afin de poivoir boucler dans setInterval
 birdObject = () => {
 	bird.birdGen(
@@ -87,5 +110,6 @@ birdObject = () => {
 	}
 };
 
-//OBJECT CALLING
+//TODO: verified
+//OBJECT LOOP CALLING
 intervalId = setInterval(birdObject, birdInterval);
