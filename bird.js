@@ -64,11 +64,13 @@ beatSpeed[0.5;1.5],
 beatRealismBehaviour[0;2.xx]
 */
 
-count = 0;
-birdNumbers = 3;
+count = 1;
+birdNumbers = 3; //nombre d'oiseau a afficher
+birdInterval = 2000; //interval d'apparition en milliseconde
 let bird = new Bird();
 
-for (let count = 0; count < birdNumbers; count++) {
+//On englobe le generateur d'oiseau dans une fonction afin de poivoir boucler dans setInterval
+birdObject = () => {
 	bird.birdGen(
 		randInt(1, 40),
 		randFloat(0, 1.5, 2),
@@ -76,4 +78,14 @@ for (let count = 0; count < birdNumbers; count++) {
 		randFloat(0.5, 1.5, 1),
 		randFloat(0, 2, 2),
 	);
-}
+
+	//casseur de setInterval
+	if (count === birdNumbers) {
+		clearInterval(intervalId);
+	} else {
+		count++;
+	}
+};
+
+//OBJECT CALLING
+intervalId = setInterval(birdObject, birdInterval);
