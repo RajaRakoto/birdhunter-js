@@ -55,8 +55,6 @@ randFloat = (min, max, after) => {
 	return randCore.toFixed(after);
 };
 
-let bird = new Bird();
-
 /*
 --- ARGS ---
 heightPosition[1;40], 
@@ -66,10 +64,16 @@ beatSpeed[0.5;1.5],
 beatRealismBehaviour[0;2.xx]
 */
 
-bird.birdGen(
-	randInt(1, 40),
-	randFloat(0, 1.5, 2),
-	randInt(2, 10),
-	randFloat(0.5, 1.5, 1),
-	randFloat(0, 2, 2),
-);
+count = 0;
+birdNumbers = 3;
+let bird = new Bird();
+
+for (let count = 0; count < birdNumbers; count++) {
+	bird.birdGen(
+		randInt(1, 40),
+		randFloat(0, 1.5, 2),
+		randInt(2, 10),
+		randFloat(0.5, 1.5, 1),
+		randFloat(0, 2, 2),
+	);
+}
