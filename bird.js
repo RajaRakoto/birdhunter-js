@@ -46,24 +46,27 @@ class Bird {
 
 		//=====================================================
 
-		//TODO: working
-		function getScreenCoords(element) {
-			let position = element.getBoundingClientRect();
-			return window.screenX + position.right;
-		}
+		// //TODO: delete by id
+		// function getScreenCoords(element) {
+		// 	//const syntax
+		// 	let position = element.getBoundingClientRect();
+		// 	return window.screenX + position.right;
+		// }
 
-		let intervalId = setInterval(autoDestruction, 200); //best calling interval = 50~200
+		// let intervalId = setInterval(autoDestruction, 100); //best calling interval = 50~200
 
-		function autoDestruction() {
-			// console.log(getScreenCoords(newBirdContainer));
-			if (getScreenCoords(newBirdContainer) >= 1997) {
-				const firstChild = env.firstChild.nextSibling;
-				const birdToDestruct = document.getElementById(`${firstChild.id}`);
-				birdToDestruct.remove();
-				console.log(firstChild.id + ' - Destroy !');
-				clearInterval(intervalId);
-			}
-		}
+		// function autoDestruction() {
+		// 	//const syntax
+		// 	// console.log(getScreenCoords(newBirdContainer));
+		// 	if (getScreenCoords(newBirdContainer) >= 1993) {
+		// 		//default valur 1993
+		// 		const firstChild = env.firstChild.nextSibling;
+		// 		console.log(firstChild.id + ' - Destroy !');
+		// 		const birdToDestruct = document.getElementById(`${firstChild.id}`);
+		// 		birdToDestruct.remove();
+		// 		clearInterval(intervalId);
+		// 	}
+		// }
 
 		//=====================================================
 	};
@@ -92,8 +95,8 @@ beatRealismBehaviour[0;2.xx]
 
 //TODO: verified
 let count = 1; //const
-let birdNumbers = 30; //nombre d'oiseau a afficher (max 30)
-let birdInterval = 2 * 1000; //interval d'apparition en milliseconde
+let birdNumbers = 50; //nombre d'oiseau a afficher (max 30)
+let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (min 1)
 
 let bird = new Bird();
 
@@ -101,15 +104,16 @@ let bird = new Bird();
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = () => {
 	bird.birdGen(
-		randInt(1, 100),
-		randInt(1, 40),
-		randFloat(0, 1.5, 2),
-		randInt(4, 10), //(min 5)
-		randFloat(0.5, 1.5, 1),
-		randFloat(0, 2, 2),
+		randInt(1, 999), //max 999
+		randInt(1, 60), //max 60
+		randFloat(0, 1.5, 2), //const
+		randInt(4, 8), //(min 5)
+		randFloat(0.5, 1.5, 1), //const
+		randFloat(0, 2, 2), //const
 	);
 
 	//casseur de setInterval
+	//TODO: verified
 	if (count === birdNumbers) {
 		clearInterval(intervalId);
 	} else {
