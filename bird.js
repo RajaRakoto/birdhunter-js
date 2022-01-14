@@ -7,14 +7,6 @@ class Bird {
 		return document.getElementById('environment');
 	};
 
-  //TODO: fix decal bug
-	autoDestruct = () => {
-    const env = this.getEnv();
-    console.log(env.firstChild.nextSibling);
-    const toDel = env.firstChild.nextSibling;
-    toDel.remove();
-	};
-
 	birdGen = (
 		id,
 		heightPosition,
@@ -23,7 +15,7 @@ class Bird {
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
-		//TODO: add ID
+		//TODO: verified
 		const newBirdContainer = this.createDivElement();
 		newBirdContainer.id = 'bird-id-' + id; //id maker
 		newBirdContainer.className = 'bird-container bird-container--shift';
@@ -54,18 +46,24 @@ class Bird {
 
 		//=====================================================
 
-		/*
-    TODO: recuperer la valeur de speed (duree du parcours)
-    TODO: duree auto destruction (lifeTime) = speed 
-    TODO: chaque instance declanche une auto destruction de ce dernier apres la duree du 'lifeTime'
-    */
+		//TODO: working
+		function getScreenCoords(element) {
+			let position = element.getBoundingClientRect();
+			return window.screenX + position.right;
+		}
 
-		console.log('speed: ' + speed + 's');
-		let lifeTime = speed * 1000; //duree de vie d'un oiseau
-		console.log('lifeTime: ' + lifeTime + 'ms');
+		let intervalId = setInterval(autoDestruction, 200); //best calling interval = 50~200
 
-		//delait de l'execution de l'autodestruction par rapport a la duree de vie "lifeTime"
-		setTimeout(this.autoDestruct, lifeTime);
+		function autoDestruction() {
+			// console.log(getScreenCoords(newBirdContainer));
+			if (getScreenCoords(newBirdContainer) >= 1997) {
+				const firstChild = env.firstChild.nextSibling;
+				const birdToDestruct = document.getElementById(`${firstChild.id}`);
+				birdToDestruct.remove();
+				console.log(firstChild.id + ' - Destroy !');
+				clearInterval(intervalId);
+			}
+		}
 
 		//=====================================================
 	};
@@ -84,6 +82,7 @@ randFloat = (min, max, after) => {
 
 /*
 --- ARGS ---
+id
 heightPosition[1;40], 
 beginDelay[0,N], 
 speed[5,N], 
@@ -92,19 +91,20 @@ beatRealismBehaviour[0;2.xx]
 */
 
 //TODO: verified
-count = 1;
-birdNumbers = 10; //nombre d'oiseau a afficher
-birdInterval = 2 * 1000; //interval d'apparition en milliseconde 
+let count = 1; //const
+let birdNumbers = 30; //nombre d'oiseau a afficher (max 30)
+let birdInterval = 2 * 1000; //interval d'apparition en milliseconde
+
 let bird = new Bird();
 
 //TODO: verified
-//On englobe le generateur d'oiseau dans une fonction afin de poivoir boucler dans setInterval
+//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = () => {
 	bird.birdGen(
-		randInt(1, 999),
+		randInt(1, 100),
 		randInt(1, 40),
 		randFloat(0, 1.5, 2),
-		randInt(2, 10),
+		randInt(4, 10), //(min 5)
 		randFloat(0.5, 1.5, 1),
 		randFloat(0, 2, 2),
 	);
@@ -119,4 +119,4 @@ birdObject = () => {
 
 //TODO: verified
 //OBJECT LOOP CALLING
-intervalId = setInterval(birdObject, birdInterval);
+let intervalId = setInterval(birdObject, birdInterval);
