@@ -1,8 +1,10 @@
 class Bird {
+	//TODO: verified
 	createDivElement = () => {
 		return document.createElement('div');
 	};
 
+	//TODO: verified
 	getEnv = () => {
 		return document.getElementById('environment');
 	};
@@ -15,17 +17,19 @@ class Bird {
 	*/
 
 	//sert a reinitialiser le database
+	//TODO: verified
 	resetDatabase = () => {
 		const resetValue = 0;
-		localStorage.setItem('killedList', resetValue);
+		localStorage.setItem('killed-id', resetValue);
 	};
 
+	//TODO: verified
 	//sert a stocker/compter les oiseaux tuEs
 	killedDatabase = () => {
-		let killedCounter = localStorage.getItem('killedList');
+		let killedCounter = localStorage.getItem('killed-id');
 
 		killedCounter++;
-		localStorage.setItem('killedList', killedCounter);
+		localStorage.setItem('killed-id', killedCounter);
 
 		return killedCounter;
 	};
@@ -36,10 +40,11 @@ class Bird {
 		heightPosition,
 		beginDelay,
 		speed,
+		birdSize,
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
-		//TODO: verified
+		//tODO: verified
 		const newBirdContainer = this.createDivElement();
 		newBirdContainer.id = 'bird-id-' + id; //id maker
 		newBirdContainer.className = 'bird-container bird-container--shift';
@@ -48,7 +53,8 @@ class Bird {
 			heightPosition + '%',
 		); //position en hauteur de depart varie de 1 a 40 pourcent
 		newBirdContainer.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart (ex: 0 si aucun delai)
-		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de deplacement pour parcourir l'environnement varie de 5 a N seconde
+		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de 	deplacement pour parcourir l'environnement varie de 5 a N seconde
+		newBirdContainer.style.setProperty('--birdSize', birdSize); //taille de chaque oiseau
 
 		//TODO: verified
 		const newBird = this.createDivElement();
@@ -70,7 +76,7 @@ class Bird {
 
 		//=====================================================
 
-		// //TODO: delete by id
+		// //TODO: auto destruction (bug)
 		// function getScreenCoords(element) {
 		// 	//const syntax
 		// 	let position = element.getBoundingClientRect();
@@ -94,15 +100,35 @@ class Bird {
 
 		//=====================================================
 
-		//TODO: working
-
+		//TODO: verified
+		// this.resetDatabase();
 		newBirdContainer.addEventListener('click', () => {
-			const totalKilled = this.killedDatabase();
-			console.log(
-				newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
-			);
 			const birdToKill = document.getElementById(newBirdContainer.id);
-			birdToKill.remove();
+			const totalKilled = this.killedDatabase(); //on recupere la valeur de 'killed-id' dans local storage
+			const killDelay = 3 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
+
+			//TODO: working
+			function killAnimation() {
+				newBird.style.setProperty('--beatSpeed', 10 + 's'); //const
+				function anim0() {
+					newBird.style.setProperty('--beatRealismBehaviour', 50 + 's');
+				}
+				setTimeout(anim0, 1000); //const
+			}
+
+			killAnimation();
+
+			function killCore(totalKilled, birdToKill) {
+				console.log(
+					newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
+				);
+				birdToKill.remove();
+			}
+
+			// let tmp = killCore(totalKilled);
+			setTimeout(function () {
+				killCore(totalKilled, birdToKill); //on englobe l'appelle de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
+			}, killDelay);
 		});
 	};
 }
@@ -121,9 +147,10 @@ randFloat = (min, max, after) => {
 /*
 --- ARGS ---
 id
-heightPosition[1;40], 
-beginDelay[0,N], 
-speed[5,N], 
+heightPosition[1;60], 
+beginDelay[0,1.5], 
+speed[3,N], 
+birdSize[0.2,0.8], 
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
 */
@@ -142,7 +169,8 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(3, 6, 2), //perso
+		randFloat(3, 6, 2), //perso (default = randFloat(3, 6, 2),)
+		randFloat(0.2, 0.8, 2), //const
 		randFloat(0.5, 1.5, 1), //const
 		randFloat(0, 2, 2), //const
 	);
