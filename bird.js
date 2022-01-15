@@ -1,8 +1,10 @@
 class Bird {
+	//TODO: verified
 	createDivElement = () => {
 		return document.createElement('div');
 	};
 
+	//TODO: verified
 	getEnv = () => {
 		return document.getElementById('environment');
 	};
@@ -15,11 +17,13 @@ class Bird {
 	*/
 
 	//sert a reinitialiser le database
+	//TODO: verified
 	resetDatabase = () => {
 		const resetValue = 0;
 		localStorage.setItem('killed-id', resetValue);
 	};
 
+	//TODO: verified
 	//sert a stocker/compter les oiseaux tuEs
 	killedDatabase = () => {
 		let killedCounter = localStorage.getItem('killed-id');
@@ -39,7 +43,7 @@ class Bird {
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
-		//TODO: verified
+		//tODO: verified
 		const newBirdContainer = this.createDivElement();
 		newBirdContainer.id = 'bird-id-' + id; //id maker
 		newBirdContainer.className = 'bird-container bird-container--shift';
@@ -70,7 +74,7 @@ class Bird {
 
 		//=====================================================
 
-		// //TODO: delete by id
+		// //TODO: auto destruction (bug)
 		// function getScreenCoords(element) {
 		// 	//const syntax
 		// 	let position = element.getBoundingClientRect();
@@ -97,18 +101,31 @@ class Bird {
 		//TODO: verified
 		// this.resetDatabase();
 		newBirdContainer.addEventListener('click', () => {
+			const birdToKill = document.getElementById(newBirdContainer.id);
 			const totalKilled = this.killedDatabase(); //on recupere la valeur de 'killed-id' dans local storage
 			const killDelay = 3 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
-			function killCore(totalKilled) {
+
+			//TODO: working
+			function killAnimation() {
+				newBird.style.setProperty('--beatSpeed', 10 + 's'); //const
+				function anim0() {
+					newBird.style.setProperty('--beatRealismBehaviour', 50 + 's');
+				}
+				setTimeout(anim0, 1000); //const
+			}
+
+			killAnimation();
+
+			function killCore(totalKilled, birdToKill) {
 				console.log(
 					newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
 				);
-				const birdToKill = document.getElementById(newBirdContainer.id);
 				birdToKill.remove();
 			}
+
 			// let tmp = killCore(totalKilled);
 			setTimeout(function () {
-				killCore(totalKilled); //on englobe l'appelle de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
+				killCore(totalKilled, birdToKill); //on englobe l'appelle de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
 			}, killDelay);
 		});
 	};
@@ -149,7 +166,7 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(3, 6, 2), //perso
+		randFloat(10, 10, 2), //perso (default = randFloat(3, 6, 2),)
 		randFloat(0.5, 1.5, 1), //const
 		randFloat(0, 2, 2), //const
 	);
