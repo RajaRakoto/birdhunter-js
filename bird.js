@@ -17,15 +17,15 @@ class Bird {
 	//sert a reinitialiser le database
 	resetDatabase = () => {
 		const resetValue = 0;
-		localStorage.setItem('killedList', resetValue);
+		localStorage.setItem('killed-id', resetValue);
 	};
 
 	//sert a stocker/compter les oiseaux tuEs
 	killedDatabase = () => {
-		let killedCounter = localStorage.getItem('killedList');
+		let killedCounter = localStorage.getItem('killed-id');
 
 		killedCounter++;
-		localStorage.setItem('killedList', killedCounter);
+		localStorage.setItem('killed-id', killedCounter);
 
 		return killedCounter;
 	};
@@ -94,15 +94,22 @@ class Bird {
 
 		//=====================================================
 
-		//TODO: working
-
+		//TODO: verified
+		// this.resetDatabase();
 		newBirdContainer.addEventListener('click', () => {
-			const totalKilled = this.killedDatabase();
-			console.log(
-				newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
-			);
-			const birdToKill = document.getElementById(newBirdContainer.id);
-			birdToKill.remove();
+			const totalKilled = this.killedDatabase(); //on recupere la valeur de 'killed-id' dans local storage
+			const killDelay = 3 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
+			function killCore(totalKilled) {
+				console.log(
+					newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
+				);
+				const birdToKill = document.getElementById(newBirdContainer.id);
+				birdToKill.remove();
+			}
+			// let tmp = killCore(totalKilled);
+			setTimeout(function () {
+				killCore(totalKilled); //on englobe l'appelle de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
+			}, killDelay);
 		});
 	};
 }
