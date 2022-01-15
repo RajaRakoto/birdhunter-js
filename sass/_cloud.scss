@@ -1,0 +1,63 @@
+@mixin cloud-settings($top, $duration, $delay, $width) {
+	top: $top;
+	animation-name: cloud-anim;
+	animation-duration: $duration;
+	animation-delay: $delay;
+	width: $width;
+}
+
+.cloud-1,
+.cloud-2,
+.cloud-3,
+.cloud-4,
+.cloud-5,
+.cloud-6,
+.cloud-7 {
+	position: fixed;
+	z-index: 2;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: linear;
+}
+
+.cloud-1 {
+	@include cloud-settings(30px, 50s, -20s, 200px);
+}
+
+.cloud-2 {
+	@include cloud-settings(180px, 120s, -60s, 150px);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
+.cloud-3 {
+	@include cloud-settings(405px, 190s, -55s, 250px);
+	left: -20%;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
+.cloud-4 {
+	@include cloud-settings(190px, 140s, -20s, 210px);
+}
+
+.cloud-5 {
+	@include cloud-settings(500px, 80s, -30s, 350px);
+}
+
+.cloud-6 {
+	@include cloud-settings(450px, 42s, -55s, 170px);
+}
+
+.cloud-7 {
+	@include cloud-settings(400px, 50s, -10s, 150px);
+}
+
+@keyframes cloud-anim {
+	0% {
+		right: -20%;
+	}
+	100% {
+		right: 110%;
+	}
+}

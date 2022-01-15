@@ -1,5 +1,10 @@
 /* background settings */
 //TODO: verified
+* {
+	margin: 0;
+	padding: 0;
+}
+
 #environment {
 	z-index: 1;
 	position: relative;
@@ -17,5 +22,7 @@
 	background-blend-mode: soft-light;
 	background-size: cover;
 	background-position: center center;
-	filter : brightness(120%);
+	filter: brightness(120%);
 }
+
+
