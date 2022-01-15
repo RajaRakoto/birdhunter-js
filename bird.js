@@ -40,6 +40,7 @@ class Bird {
 		heightPosition,
 		beginDelay,
 		speed,
+		birdSize,
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
@@ -52,7 +53,9 @@ class Bird {
 			heightPosition + '%',
 		); //position en hauteur de depart varie de 1 a 40 pourcent
 		newBirdContainer.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart (ex: 0 si aucun delai)
-		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de deplacement pour parcourir l'environnement varie de 5 a N seconde
+		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de 	deplacement pour parcourir l'environnement varie de 5 a N seconde
+		newBirdContainer.style.setProperty('--birdSize', birdSize); //taille de chaque oiseau
+
 
 		//TODO: verified
 		const newBird = this.createDivElement();
@@ -62,6 +65,8 @@ class Bird {
 			'--beatRealismBehaviour',
 			beatRealismBehaviour + 's',
 		); //comportement du battement varie de 0 a 2,xx seconde
+
+
 
 		//TODO: verified
 		//ajouter l'element 'newBird' en tant que fils de 'newBirdContainer'
@@ -148,6 +153,7 @@ id
 heightPosition[1;40], 
 beginDelay[0,N], 
 speed[5,N], 
+birdSize[0.5,1], 
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
 */
@@ -166,7 +172,8 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(3, 4, 2), //perso (default = randFloat(3, 6, 2),)
+		randFloat(3, 6, 2), //perso (default = randFloat(3, 6, 2),)
+		randFloat(0.2, 1, 2), //max 1
 		randFloat(0.5, 1.5, 1), //const
 		randFloat(0, 2, 2), //const
 	);

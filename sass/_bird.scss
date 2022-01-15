@@ -71,37 +71,40 @@ DESCRIPTION (animation deplacement):
 }
 
 //TODO: translateY value random
-
+//translateY (default) => 5 - 2 - 1 - 2 - 5 - 2 - 1
+//translateX (default) => const
+//scale (default) => 0.5
+//rotate (default) => 0
 @keyframes fly-right {
 	0% {
-		transform: scale(0.3) translateX(-10vw) rotate(0deg);
+		transform: scale(var(--birdSize)) translateX(-10vw) rotate(0deg);
 	}
 
 	10% {
-		transform: translateY(5vh) translateX(10vw) scale(0.4) rotate(0deg);
+		transform: translateY(5vh) translateX(10vw) scale(var(--birdSize)) rotate(0deg);
 	}
 
 	20% {
-		transform: translateY(2vh) translateX(30vw) scale(0.5) rotate(0deg);
+		transform: translateY(2vh) translateX(30vw) scale(var(--birdSize)) rotate(0deg);
 	}
 
 	30% {
-		transform: translateY(1vh) translateX(50vw) scale(0.6) rotate(0deg);
+		transform: translateY(1vh) translateX(50vw) scale(var(--birdSize)) rotate(0deg);
 	}
 
 	40% {
-		transform: translateY(2h) translateX(70vw) scale(0.6) rotate(0deg);
+		transform: translateY(2vh) translateX(70vw) scale(var(--birdSize)) rotate(0deg);
 	}
 
 	50% {
-		transform: translateY(5vh) translateX(90vw) scale(0.6) rotate(0deg);
+		transform: translateY(5vh) translateX(90vw) scale(var(--birdSize)) rotate(0deg);
 	}
 
 	60% {
-		transform: translateY(2vh) translateX(110vw) scale(0.6) rotate(0deg);
+		transform: translateY(2vh) translateX(110vw) scale(var(--birdSize)) rotate(0deg);
 	}
 
 	100% {
-		transform: translateY(1vh) translateX(110vw) scale(0.6) rotate(0deg);
+		transform: translateY(1vh) translateX(110vw) scale(var(--birdSize)) rotate(0deg);
 	}
 }
