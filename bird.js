@@ -187,7 +187,7 @@ window.addEventListener('click', () => {
 id
 heightPosition[1;60], 
 beginDelay[0,1.5], 
-speed[4,N], 
+speed[5,N], 
 birdSize[0.2,0.8], 
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
@@ -195,7 +195,7 @@ beatRealismBehaviour[0;2.xx]
 let count = 1;
 const birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
 const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
-const ambianceType = 1; //1 ou 2
+const ambianceType = 0; //1 ou 2
 const bird = new Bird();
 
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
@@ -204,9 +204,9 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(4, 8, 2), //perso (default = randFloat(4, 8, 2),)
-		randFloat(0.2, 0.5, 2), //const
-		randFloat(0.5, 1.5, 1), //const
+		randFloat(5, 9, 2), //perso (default = randFloat(5, 9, 2),)
+		randFloat(0.4, 0.5, 2), //const
+		randFloat(0.5, 1, 1), //const
 		randFloat(0, 2, 2), //const
 	);
 
