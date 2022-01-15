@@ -155,7 +155,7 @@ randFloat = (min, max, after) => {
 
 //TODO: working
 //--------- AUDIO SECTION (begin) ---------
-const forestAmbiance = ambianceType => {
+function forestAmbiance(ambianceType) {
 	const audio = new Audio();
 	if (ambianceType == 1) {
 		audio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
@@ -163,7 +163,7 @@ const forestAmbiance = ambianceType => {
 		audio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
 	}
 	return audio.play();
-};
+}
 
 const shotGun = () => {
 	const audio = new Audio();
