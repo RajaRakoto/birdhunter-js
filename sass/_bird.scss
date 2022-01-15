@@ -74,34 +74,34 @@ DESCRIPTION (animation deplacement):
 
 @keyframes fly-right {
 	0% {
-		transform: scale(0.3) translateX(-10vw);
+		transform: scale(0.3) translateX(-10vw) rotate(0deg);
 	}
 
 	10% {
-		transform: translateY(10vh) translateX(10vw) scale(0.4);
+		transform: translateY(5vh) translateX(10vw) scale(0.4) rotate(0deg);
 	}
 
 	20% {
-		transform: translateY(20vh) translateX(30vw) scale(0.5);
+		transform: translateY(0vh) translateX(30vw) scale(0.5) rotate(0deg);
 	}
 
 	30% {
-		transform: translateY(30vh) translateX(50vw) scale(0.6);
+		transform: translateY(5vh) translateX(50vw) scale(0.6) rotate(0deg);
 	}
 
 	40% {
-		transform: translateY(10vh) translateX(70vw) scale(0.6);
+		transform: translateY(0vh) translateX(70vw) scale(0.6) rotate(0deg);
 	}
 
 	50% {
-		transform: translateY(20vh) translateX(90vw) scale(0.6);
+		transform: translateY(5vh) translateX(90vw) scale(0.6) rotate(0deg);
 	}
 
 	60% {
-		transform: translateY(30vh) translateX(110vw) scale(0.6);
+		transform: translateY(0vh) translateX(110vw) scale(0.6) rotate(0deg);
 	}
 
 	100% {
-		transform: translateY(10vh) translateX(110vw) scale(0.6);
+		transform: translateY(5vh) translateX(110vw) scale(0.6) rotate(0deg);
 	}
 }
