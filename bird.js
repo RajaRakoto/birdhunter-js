@@ -166,7 +166,7 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(10, 10, 2), //perso (default = randFloat(3, 6, 2),)
+		randFloat(3, 4, 2), //perso (default = randFloat(3, 6, 2),)
 		randFloat(0.5, 1.5, 1), //const
 		randFloat(0, 2, 2), //const
 	);
