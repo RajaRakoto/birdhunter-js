@@ -1,0 +1,45 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 546 262" width="546" height="262">
+	<title>Nouveau projet</title>
+	<defs>
+		<linearGradient id="grd1" gradientUnits="userSpaceOnUse"  x1="162.5" y1="231.2" x2="153.2" y2="143.7">
+			<stop offset="0" stop-color="#b5eaf7"  />
+			<stop offset="1" stop-color="#d1f1f6"  />
+		</linearGradient>
+		<linearGradient id="grd2" gradientUnits="userSpaceOnUse"  x1="158.4" y1="218.5" x2="153" y2="108.7">
+			<stop offset="0" stop-color="#d2edf9"  />
+			<stop offset="1" stop-color="#ffffff"  />
+		</linearGradient>
+		<linearGradient id="grd3" gradientUnits="userSpaceOnUse"  x1="13.7" y1="178.2" x2="137.2" y2="178.2">
+			<stop offset="0" stop-color="#d2edf9"  />
+			<stop offset="1" stop-color="#ffffff"  />
+		</linearGradient>
+		<linearGradient id="grd4" gradientUnits="userSpaceOnUse"  x1="131.2" y1="132.2" x2="205.5" y2="132.2">
+			<stop offset="0" stop-color="#d2edf9"  />
+			<stop offset="1" stop-color="#ffffff"  />
+		</linearGradient>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: url(#grd1);stroke: #ffffff;paint-order:stroke fill markers;stroke-linejoin:round;stroke-width: 16 } 
+		.s1 { mix-blend-mode: multiply;fill: url(#grd2) } 
+		.s2 { fill: #ffffff } 
+		.s3 { mix-blend-mode: multiply;fill: url(#grd3) } 
+		.s4 { mix-blend-mode: multiply;fill: url(#grd4) } 
+	</style>
+	<path id="&lt;Path&gt;" class="s0" d="m227.65 174.23c-0.79-10.16 2.47-18.76 8.76-25.82c-7.11-111.43 175.12-138.6 195.18 18.9c30.58-3.73 69.53-1.29 89.09 8.11c7.25 3.51 11.8 7.97 12.32 13.4c0.95 9.71-113.99 28.02-154.5 6.72c-58.68 15.7-216.52 12.32-219.34-5.61c-2.77-17.92 51.71-31.39 68.49-15.7z" />
+	<path id="&lt;Path&gt;" class="s1" d="m227.65 174.23c-0.79-10.16 2.47-18.76 8.76-25.82c3.17 1.29 6.51 2.4 9.89 3.27c10.52-29.79 46.12-38.14 59.29-29.48c21.14 13.89 16.44 51.76 15.18 64.39c10.11-12.36 32.23-14.2 49.97-10.19c17.7 4 33.44 12.42 51.09 16.53c22.04 5.12 45.68 3.17 67.93-1.22c11.11-2.19 22.9-5.5 29.06-13.19c0.78-0.97 1.39-1.98 1.87-3.09c7.25 3.51 11.8 7.97 12.32 13.4c0.95 9.71-113.99 28.02-154.5 6.72c-58.68 15.7-216.52 12.32-219.34-5.61c-2.77-17.92 51.71-31.39 68.49-15.7z" />
+	<g id="&lt;Group&gt;">
+		<path id="&lt;Path&gt;" class="s2" d="m139.25 187.43c2.18 15.31-91.5 25.25-106.74 10.34c-33.18 8.28-20.62-17.8-0.9-12.97c17.94-16.43 105.84-9.93 107.64 2.63z" />
+		<path id="&lt;Path&gt;" class="s3" d="m32.52 197.77c-17.58 4.39-22.32-0.87-19.95-6.07c2.68-0.14 5.9-0.63 9.75-1.59c14.91 14.59 104.92 5.38 106.73-9.37c6.02 1.9 9.85 4.17 10.21 6.69c2.18 15.31-91.5 25.25-106.74 10.34z" />
+	</g>
+	<g id="&lt;Group&gt;">
+		<path id="&lt;Path&gt;" class="s2" d="m206.74 138.82c1.31 9.21-55.05 15.19-64.22 6.22c-19.96 4.98-12.41-10.71-0.54-7.81c10.79-9.88 63.68-5.98 64.76 1.58z" />
+		<path id="&lt;Path&gt;" class="s4" d="m142.53 145.05c-10.58 2.64-13.43-0.53-12.01-3.65c1.61-0.08 3.55-0.38 5.86-0.96c8.98 8.78 63.13 3.24 64.22-5.63c3.62 1.14 5.93 2.51 6.14 4.02c1.31 9.21-55.05 15.19-64.22 6.22z" />
+	</g>
+	<path id="&lt;Path&gt;" class="s2" d="m283.35 66.73c20.53 34.72 64.92 86.45 142.63 73.1c-22.93-79.18-94.25-96.75-142.63-73.1z" />
+	<path id="&lt;Path&gt;" class="s2" d="m532.64 189.89c-33.86-12.59-67.55-20.11-101.06-22.58c30.58-3.73 69.53-1.29 89.09 8.11c7.25 3.51 11.8 7.97 12.32 13.4c0.03 0.35-0.1 0.71-0.35 1.07z" />
+	<path id="&lt;Path&gt;" class="s2" d="m227.65 174.23c-0.79-10.16 2.47-18.76 8.76-25.82c-0.64-10.04 0.26-19.38 2.44-27.98c-0.21 1.21-3.05 19.16 7.45 31.25c-11.61 8.57-16.91 18.35-15.87 29.35c-25.24-10-45.89-11.57-61.95-4.72c15.81-9.6 47.15-13.31 59.17-2.07z" />
+	<path id="&lt;Path&gt;" class="s2" d="m278.42 180.28c6.54 4.47 9.02 14.04 7.49 25.07c-16.65 0.38-33.45 0.26-49.14-0.35c0.67-1.35 1.4-2.7 2.18-4.04c11.03-18.77 28.71-28.03 39.47-20.68z" />
+	<g id="&lt;Group&gt;">
+	</g>
+</svg>
