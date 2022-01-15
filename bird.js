@@ -15,7 +15,6 @@ class Bird {
 		- getItem = recuperer la valeur d'une cle
 		- setItem = modifier la valeur d'une cle
 	*/
-
 	//sert a reinitialiser le database
 	//TODO: verified
 	resetDatabase = () => {
@@ -105,9 +104,9 @@ class Bird {
 		newBirdContainer.addEventListener('click', () => {
 			const birdToKill = document.getElementById(newBirdContainer.id);
 			const totalKilled = this.killedDatabase(); //on recupere la valeur de 'killed-id' dans local storage
-			const killDelay = 3 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
+			const killDelay = 1 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
 
-			//TODO: working
+			//TODO: verified (feat: add drop anim)
 			function killAnimation() {
 				newBird.style.setProperty('--beatSpeed', 10 + 's'); //const
 				function anim0() {
@@ -149,7 +148,7 @@ randFloat = (min, max, after) => {
 id
 heightPosition[1;60], 
 beginDelay[0,1.5], 
-speed[3,N], 
+speed[4,N], 
 birdSize[0.2,0.8], 
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
@@ -169,8 +168,8 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(3, 6, 2), //perso (default = randFloat(3, 6, 2),)
-		randFloat(0.2, 0.8, 2), //const
+		randFloat(4, 8, 2), //perso (default = randFloat(4, 8, 2),)
+		randFloat(0.2, 0.5, 2), //const
 		randFloat(0.5, 1.5, 1), //const
 		randFloat(0, 2, 2), //const
 	);
@@ -185,5 +184,30 @@ birdObject = () => {
 };
 
 //TODO: verified
-//OBJECT LOOP CALLING
+
+//--------- AUDIO SECTION (begin) ---------
+//TODO: working
+const forestAmbiance = songType => {
+	const audio = new Audio();
+	if (songType == 1) {
+		audio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
+	} else {
+		audio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
+	}
+	return audio.play();
+};
+
+const shotGun = () => {
+	const audio = new Audio();
+	audio.src = './ogg/gun-shoot.ogg';
+	return audio.play();
+};
+
+window.addEventListener('click', () => {
+	shotGun();
+});
+//--------- AUDIO SECTION (end) ---------
+
+//CALLING (audio, bird)
+setInterval(forestAmbiance(1), 113000);
 let intervalId = setInterval(birdObject, birdInterval);
