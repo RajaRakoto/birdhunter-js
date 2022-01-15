@@ -1,10 +1,11 @@
+//################################################
+//############## CLASS BIRD (begin) ##############
+//################################################
 class Bird {
-	//TODO: verified
 	createDivElement = () => {
 		return document.createElement('div');
 	};
 
-	//TODO: verified
 	getEnv = () => {
 		return document.getElementById('environment');
 	};
@@ -44,6 +45,7 @@ class Bird {
 		beatRealismBehaviour,
 	) => {
 		//tODO: verified
+		//--------- MAKER SECTION (begin) --------
 		const newBirdContainer = this.createDivElement();
 		newBirdContainer.id = 'bird-id-' + id; //id maker
 		newBirdContainer.className = 'bird-container bird-container--shift';
@@ -55,7 +57,6 @@ class Bird {
 		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de 	deplacement pour parcourir l'environnement varie de 5 a N seconde
 		newBirdContainer.style.setProperty('--birdSize', birdSize); //taille de chaque oiseau
 
-		//TODO: verified
 		const newBird = this.createDivElement();
 		newBird.className = 'bird bird--beat';
 		newBird.style.setProperty('--beatSpeed', beatSpeed + 's'); //vitesse de battement varie de 0.5 a 1.5 seconde
@@ -64,7 +65,6 @@ class Bird {
 			beatRealismBehaviour + 's',
 		); //comportement du battement varie de 0 a 2,xx seconde
 
-		//TODO: verified
 		//ajouter l'element 'newBird' en tant que fils de 'newBirdContainer'
 		newBirdContainer.appendChild(newBird);
 		let birdObject = newBirdContainer;
@@ -72,6 +72,7 @@ class Bird {
 		const entryPoint = document.getElementById('entryPoint');
 		//injecter 'birdObject' avant 'entryPoint' dans 'env'
 		env.insertBefore(birdObject, entryPoint);
+		//--------- MAKER SECTION (end) --------
 
 		//=====================================================
 
@@ -100,6 +101,7 @@ class Bird {
 		//=====================================================
 
 		//TODO: verified
+		//--------- KILL SECTION (begin) --------
 		// this.resetDatabase();
 		newBirdContainer.addEventListener('click', () => {
 			const birdToKill = document.getElementById(newBirdContainer.id);
@@ -129,69 +131,35 @@ class Bird {
 				killCore(totalKilled, birdToKill); //on englobe l'appelle de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
 			}, killDelay);
 		});
+		//--------- KILL SECTION (begin) --------
 	};
 }
+//##############################################
+//############## CLASS BIRD (end) ##############
+//##############################################
 
+//######################################
+//############ UTILS (begin) ###########
+//######################################
 //TODO: verified
+//--------- RANDOM SECTION (begin) --------
 randInt = (min, max) => {
 	return Math.round(Math.random() * max + min);
 };
 
-//TODO: verified
 randFloat = (min, max, after) => {
 	let randCore = Math.random() * max + min;
 	return randCore.toFixed(after);
 };
+//--------- RANDOM SECTION (begin) --------
 
-/*
---- ARGS ---
-id
-heightPosition[1;60], 
-beginDelay[0,1.5], 
-speed[4,N], 
-birdSize[0.2,0.8], 
-beatSpeed[0.5;1.5], 
-beatRealismBehaviour[0;2.xx]
-*/
-
-//TODO: verified
-let count = 1; //const
-let birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
-let birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
-
-let bird = new Bird();
-
-//TODO: verified
-//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
-birdObject = () => {
-	bird.birdGen(
-		randInt(1, birdNumbers), //max birdNumbers
-		randInt(1, 60), //max 60
-		randFloat(0, 1.5, 2), //const
-		randFloat(4, 8, 2), //perso (default = randFloat(4, 8, 2),)
-		randFloat(0.2, 0.5, 2), //const
-		randFloat(0.5, 1.5, 1), //const
-		randFloat(0, 2, 2), //const
-	);
-
-	//casseur de setInterval
-	//TODO: verified
-	if (count === birdNumbers) {
-		clearInterval(intervalId);
-	} else {
-		count++;
-	}
-};
-
-//TODO: verified
-
-//--------- AUDIO SECTION (begin) ---------
 //TODO: working
+//--------- AUDIO SECTION (begin) ---------
 const forestAmbiance = songType => {
 	const audio = new Audio();
 	if (songType == 1) {
 		audio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
-	} else {
+	} else if (songType == 2) {
 		audio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
 	}
 	return audio.play();
@@ -207,7 +175,52 @@ window.addEventListener('click', () => {
 	shotGun();
 });
 //--------- AUDIO SECTION (end) ---------
+//######################################
+//############# UTILS (end) ############
+//######################################
+
+//######################################
+//############ MAIN (begin) ############
+//######################################
+/*
+--- ARGS ---
+id
+heightPosition[1;60], 
+beginDelay[0,1.5], 
+speed[4,N], 
+birdSize[0.2,0.8], 
+beatSpeed[0.5;1.5], 
+beatRealismBehaviour[0;2.xx]
+*/
+let count = 1; //const
+let birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
+let birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
+let bird = new Bird();
+
+//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
+birdObject = () => {
+	bird.birdGen(
+		randInt(1, birdNumbers), //max birdNumbers
+		randInt(1, 60), //max 60
+		randFloat(0, 1.5, 2), //const
+		randFloat(4, 8, 2), //perso (default = randFloat(4, 8, 2),)
+		randFloat(0.2, 0.5, 2), //const
+		randFloat(0.5, 1.5, 1), //const
+		randFloat(0, 2, 2), //const
+	);
+
+	//casseur de setInterval
+
+	if (count === birdNumbers) {
+		clearInterval(intervalId);
+	} else {
+		count++;
+	}
+};
 
 //CALLING (audio, bird)
 setInterval(forestAmbiance(1), 113000);
 let intervalId = setInterval(birdObject, birdInterval);
+//######################################
+//############# MAIN (end) #############
+//######################################
