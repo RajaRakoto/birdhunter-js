@@ -7,6 +7,30 @@ class Bird {
 		return document.getElementById('environment');
 	};
 
+	/* ---------- DATABASE SECTION (begin) ---------- */
+	/*
+	NOTE (local storage):
+		- getItem = recuperer la valeur d'une cle
+		- setItem = modifier la valeur d'une cle
+	*/
+
+	//sert a reinitialiser le database
+	resetDatabase = () => {
+		const resetValue = 0;
+		localStorage.setItem('killedList', resetValue);
+	};
+
+	//sert a stocker/compter les oiseaux tuEs
+	killedDatabase = () => {
+		let killedCounter = localStorage.getItem('killedList');
+
+		killedCounter++;
+		localStorage.setItem('killedList', killedCounter);
+
+		return killedCounter;
+	};
+	/* ------------ DATABASE SECTION (end) --------- */
+
 	birdGen = (
 		id,
 		heightPosition,
@@ -70,11 +94,15 @@ class Bird {
 
 		//=====================================================
 
-		//TODO: verified
+		//TODO: working
+
 		newBirdContainer.addEventListener('click', () => {
-			const kill = document.getElementById(newBirdContainer.id);
-			kill.remove();
-			console.log(newBirdContainer.id + ' killed 💀 !');
+			const totalKilled = this.killedDatabase();
+			console.log(
+				newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
+			);
+			const birdToKill = document.getElementById(newBirdContainer.id);
+			birdToKill.remove();
 		});
 	};
 }
@@ -102,7 +130,7 @@ beatRealismBehaviour[0;2.xx]
 
 //TODO: verified
 let count = 1; //const
-let birdNumbers = 10; //nombre d'oiseau a afficher (max 30)
+let birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
 let birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
 
 let bird = new Bird();
@@ -111,7 +139,7 @@ let bird = new Bird();
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = () => {
 	bird.birdGen(
-		randInt(1, 999), //max 999
+		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
 		randFloat(3, 6, 2), //perso
