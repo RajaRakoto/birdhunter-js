@@ -121,7 +121,7 @@ class Bird {
 
 			function killCore(totalKilled, birdToKill) {
 				console.log(
-					newBirdContainer.id + ' killed 💀 ! | total = ' + totalKilled,
+					newBirdContainer.id + ' killed 💀 | total = ' + totalKilled,
 				);
 				birdToKill.remove();
 			}
@@ -155,11 +155,11 @@ randFloat = (min, max, after) => {
 
 //TODO: working
 //--------- AUDIO SECTION (begin) ---------
-const forestAmbiance = songType => {
+const forestAmbiance = ambianceType => {
 	const audio = new Audio();
-	if (songType == 1) {
+	if (ambianceType == 1) {
 		audio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
-	} else if (songType == 2) {
+	} else if (ambianceType == 2) {
 		audio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
 	}
 	return audio.play();
@@ -192,10 +192,11 @@ birdSize[0.2,0.8],
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
 */
-let count = 1; //const
-let birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
-let birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
-let bird = new Bird();
+let count = 1;
+const birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
+const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
+const ambianceType = 1; //1 ou 2
+const bird = new Bird();
 
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = () => {
@@ -219,8 +220,8 @@ birdObject = () => {
 };
 
 //CALLING (audio, bird)
-setInterval(forestAmbiance(1), 113000);
-let intervalId = setInterval(birdObject, birdInterval);
+setInterval(forestAmbiance(ambianceType), 113000);
+const intervalId = setInterval(birdObject, birdInterval);
 //######################################
 //############# MAIN (end) #############
 //######################################
