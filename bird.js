@@ -153,6 +153,11 @@ birdSize[0.2,0.8],
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
 */
+let count = 1;
+const birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
+const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
+const ambianceType = 0; //1 ou 2
+const bird = new Bird();
 
 //TODO: verified
 let count = 1; //const
@@ -209,5 +214,8 @@ window.addEventListener('click', () => {
 //--------- AUDIO SECTION (end) ---------
 
 //CALLING (audio, bird)
-setInterval(forestAmbiance(1), 113000);
-let intervalId = setInterval(birdObject, birdInterval);
+setInterval(forestAmbiance(ambianceType), 110000); //-3s 
+const intervalId = setInterval(birdObject, birdInterval);
+//######################################
+//############# MAIN (end) #############
+//######################################
