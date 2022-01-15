@@ -82,15 +82,15 @@ DESCRIPTION (animation deplacement):
 	}
 
 	20% {
-		transform: translateY(0vh) translateX(30vw) scale(0.5) rotate(0deg);
+		transform: translateY(2vh) translateX(30vw) scale(0.5) rotate(0deg);
 	}
 
 	30% {
-		transform: translateY(5vh) translateX(50vw) scale(0.6) rotate(0deg);
+		transform: translateY(1vh) translateX(50vw) scale(0.6) rotate(0deg);
 	}
 
 	40% {
-		transform: translateY(0vh) translateX(70vw) scale(0.6) rotate(0deg);
+		transform: translateY(2h) translateX(70vw) scale(0.6) rotate(0deg);
 	}
 
 	50% {
@@ -98,10 +98,10 @@ DESCRIPTION (animation deplacement):
 	}
 
 	60% {
-		transform: translateY(0vh) translateX(110vw) scale(0.6) rotate(0deg);
+		transform: translateY(2vh) translateX(110vw) scale(0.6) rotate(0deg);
 	}
 
 	100% {
-		transform: translateY(5vh) translateX(110vw) scale(0.6) rotate(0deg);
+		transform: translateY(1vh) translateX(110vw) scale(0.6) rotate(0deg);
 	}
 }
