@@ -153,7 +153,7 @@ randFloat = (min, max, after) => {
 };
 //--------- RANDOM SECTION (begin) --------
 
-//TODO: working
+//TODO: verified
 //--------- AUDIO SECTION (begin) ---------
 function forestAmbiance(ambianceType) {
 	const audio = new Audio();
@@ -175,6 +175,17 @@ window.addEventListener('click', () => {
 	shotGun();
 });
 //--------- AUDIO SECTION (end) ---------
+
+//TODO: verified (no full screen adaptable)
+//--------- CURSOR SECTION (begin) -------
+const cursor = document.getElementById('cursor');
+//le parametre e (event) permet de tracer l'evenement (trace les donnees de l'evenement)
+window.addEventListener('mousemove', e => {
+	//permet de suivre automatiquement le pointeur
+	cursor.style.left = e.pageX + 'px';
+	cursor.style.top = e.pageY + 'px';
+});
+//--------- CURSOR SECTION (begin) -------
 //######################################
 //############# UTILS (end) ############
 //######################################
@@ -187,7 +198,7 @@ window.addEventListener('click', () => {
 id
 heightPosition[1;60], 
 beginDelay[0,1.5], 
-speed[4,N], 
+speed[5,N], 
 birdSize[0.2,0.8], 
 beatSpeed[0.5;1.5], 
 beatRealismBehaviour[0;2.xx]
@@ -195,7 +206,7 @@ beatRealismBehaviour[0;2.xx]
 let count = 1;
 const birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
 const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
-const ambianceType = 1; //1 ou 2
+const ambianceType = 0; //1 ou 2
 const bird = new Bird();
 
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
@@ -204,9 +215,9 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(4, 8, 2), //perso (default = randFloat(4, 8, 2),)
-		randFloat(0.2, 0.5, 2), //const
-		randFloat(0.5, 1.5, 1), //const
+		randFloat(7, 12, 2), //perso (default = randFloat(5, 9, 2),)
+		randFloat(0.4, 0.5, 2), //const
+		randFloat(0.5, 1, 1), //const
 		randFloat(0, 2, 2), //const
 	);
 
