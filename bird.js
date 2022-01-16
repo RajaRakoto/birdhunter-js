@@ -153,7 +153,7 @@ randFloat = (min, max, after) => {
 };
 //--------- RANDOM SECTION (begin) --------
 
-//TODO: working
+//TODO: verified
 //--------- AUDIO SECTION (begin) ---------
 function forestAmbiance(ambianceType) {
 	const audio = new Audio();
@@ -175,6 +175,17 @@ window.addEventListener('click', () => {
 	shotGun();
 });
 //--------- AUDIO SECTION (end) ---------
+
+//TODO: verified (no full screen adaptable)
+//--------- CURSOR SECTION (begin) -------
+const cursor = document.getElementById('cursor');
+//le parametre e (event) permet de tracer l'evenement (trace les donnees de l'evenement)
+window.addEventListener('mousemove', e => {
+	//permet de suivre automatiquement le pointeur
+	cursor.style.left = e.pageX + 'px';
+	cursor.style.top = e.pageY + 'px';
+});
+//--------- CURSOR SECTION (begin) -------
 //######################################
 //############# UTILS (end) ############
 //######################################
@@ -204,7 +215,7 @@ birdObject = () => {
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
 		randFloat(0, 1.5, 2), //const
-		randFloat(5, 9, 2), //perso (default = randFloat(5, 9, 2),)
+		randFloat(7, 12, 2), //perso (default = randFloat(5, 9, 2),)
 		randFloat(0.4, 0.5, 2), //const
 		randFloat(0.5, 1, 1), //const
 		randFloat(0, 2, 2), //const
