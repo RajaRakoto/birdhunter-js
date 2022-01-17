@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>birdhunter-js</title>
 		<link rel="stylesheet" href="./sass/style.css" />
+		<link rel="stylesheet" href="./lib/bootstrap-grid.css" />
 	</head>
 	<body>
 		<section id="environment">
@@ -18,6 +19,13 @@
 			<img class="cloud-7" src="./img/cloud2.svg" aria-hidden="true" />
 			<span id="entryPoint"></span>
 			<div id="cursor"></div>
+			<div id="user-interface" class="container">
+				<div class="row d-flex justify-content-center ui-box m-10">
+					💀 TOTAL KILL 💀<span id="kill-display"></span>
+				</div>
+				<button>reset score</button>
+			</div>
+			<h1>birdhunter-js</h1>
 		</section>
 		<script src="./bird.js"></script>
 	</body>
