@@ -151,6 +151,8 @@ class Bird {
 //######################################
 //############ UTILS (begin) ###########
 //######################################
+const bird = new Bird(); //instanciation de l'objet bird
+
 //TODO: verified
 //--------- RANDOM SECTION (begin) --------
 randInt = (min, max) => {
@@ -181,7 +183,7 @@ const shotGun = () => {
 	return audio.play();
 };
 
-window.addEventListener('click', () => {
+bird.getEnv().addEventListener('click', () => {
 	shotGun();
 });
 //--------- AUDIO SECTION (end) ---------
@@ -229,7 +231,6 @@ const speedMax = 9;
 const sizeMin = 0.5;
 const sizeMax = 0.8;
 const ambianceType = 0; //1 ou 2
-const bird = new Bird();
 
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = () => {
@@ -244,12 +245,7 @@ birdObject = () => {
 	);
 
 	//casseur de setInterval
-
-	if (count === birdNumbers) {
-		clearInterval(intervalId);
-	} else {
-		count++;
-	}
+	count === birdNumbers ? clearInterval(intervalId) : count++;
 };
 
 //CALLING (audio, bird)
