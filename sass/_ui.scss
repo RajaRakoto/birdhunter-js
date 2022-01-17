@@ -122,3 +122,20 @@ h1 {
 .m-10 {
 	margin: 10px !important;
 }
+
+.modal-notif {
+	display: flex;
+	justify-content: center;
+
+	&--success {
+		color: rgb(78, 240, 146);
+	}
+
+	&--error {
+		color: rgb(251, 104, 50);
+	}
+}
+
+.modal-content {
+	opacity: 0.9;
+}
