@@ -2,12 +2,21 @@
 //############## CLASS BIRD (begin) ##############
 //################################################
 class Bird {
+	//TODO: verified
 	createDivElement = () => {
 		return document.createElement('div');
 	};
 
+	//TODO: verified
 	getEnv = () => {
 		return document.getElementById('environment');
+	};
+
+	//TODO: verified
+	getKillScore = () => {
+		const killDisplay = document.getElementById('kill-display');
+		let killScore = localStorage.getItem('killed-id');
+		return (killDisplay.innerText = killScore);
 	};
 
 	/* ---------- DATABASE SECTION (begin) ---------- */
@@ -102,11 +111,12 @@ class Bird {
 
 		//TODO: verified
 		//--------- KILL SECTION (begin) --------
-		// this.resetDatabase();
 		newBirdContainer.addEventListener('click', () => {
-			const birdToKill = document.getElementById(newBirdContainer.id);
+			const killDisplay = document.getElementById('kill-display');
 			const totalKilled = this.killedDatabase(); //on recupere la valeur de 'killed-id' dans local storage
+			const birdToKill = document.getElementById(newBirdContainer.id);
 			const killDelay = 1 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
+			killDisplay.innerText = totalKilled;
 
 			//TODO: verified (feat: add drop anim)
 			function killAnimation() {
@@ -186,6 +196,14 @@ window.addEventListener('mousemove', e => {
 	cursor.style.top = e.pageY + 'px';
 });
 //--------- CURSOR SECTION (begin) -------
+//--------- UI SECTION (begin) -------
+const resetBtn = document.querySelector('#user-interface button');
+
+resetBtn.addEventListener('click', () => {
+	bird.resetDatabase();
+	bird.getKillScore();
+});
+//---------- UI SECTION (end) --------
 //######################################
 //############# UTILS (end) ############
 //######################################
@@ -210,7 +228,7 @@ const speedMin = 7;
 const speedMax = 9;
 const sizeMin = 0.5;
 const sizeMax = 0.8;
-const ambianceType = 1; //1 ou 2
+const ambianceType = 0; //1 ou 2
 const bird = new Bird();
 
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
@@ -235,6 +253,7 @@ birdObject = () => {
 };
 
 //CALLING (audio, bird)
+bird.getKillScore();
 setInterval(forestAmbiance(ambianceType), 113000);
 const intervalId = setInterval(birdObject, birdInterval);
 //######################################
