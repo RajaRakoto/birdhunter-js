@@ -5,10 +5,13 @@
 	padding: 0;
 }
 
+body {
+	overflow: hidden; //plein ecran
+}
+
 #environment {
 	z-index: 1;
 	position: relative;
-	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -24,4 +27,3 @@
 	background-position: center center;
 	filter: brightness(120%);
 }
-
