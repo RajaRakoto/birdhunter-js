@@ -245,12 +245,7 @@ birdObject = () => {
 	);
 
 	//casseur de setInterval
-
-	if (count === birdNumbers) {
-		clearInterval(intervalId);
-	} else {
-		count++;
-	}
+	count === birdNumbers ? clearInterval(intervalId) : count++;
 };
 
 //CALLING (audio, bird)
