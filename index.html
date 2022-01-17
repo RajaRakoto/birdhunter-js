@@ -12,10 +12,18 @@
 		<nav>
 			<div class="d-flex">
 				<span style="color: #eee">v0.1 beta</span>
-				<div class="menu p-1 flex-fill"><button>test</button></div>
-				<div class="menu p-1 flex-fill"><button>test</button></div>
-				<div class="menu p-1 flex-fill"><button>test</button></div>
-				<div class="menu p-1 flex-fill"><button>test</button></div>
+				<div class="menu p-1 flex-fill">
+					<button
+						type="button"
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModal"
+					>
+						set bird
+					</button>
+				</div>
+				<div class="menu p-1 flex-fill"><button>set env</button></div>
+				<!-- <div class="menu p-1 flex-fill"><button>test</button></div>
+				<div class="menu p-1 flex-fill"><button>test</button></div> -->
 			</div>
 		</nav>
 		<section id="environment">
@@ -37,6 +45,72 @@
 				</div>
 				<button>reset score</button>
 			</div>
+		</section>
+		<section id="all-modal">
+			<!-- SET BIRD MODAL (begin) -->
+			<div
+				class="modal fade"
+				id="exampleModal"
+				tabindex="-1"
+				aria-labelledby="exampleModalLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<!-- HEADER (begin) -->
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">
+								Set bird's settings
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<!-- HEADER (end) -->
+						<!-- BODY (begin) -->
+						<div class="modal-body">
+							<div class="input-group input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="inputGroup-sizing-sm"
+										>Speed</span
+									>
+								</div>
+								<input
+									id="speed-input"
+									type="number"
+									class="form-control"
+									aria-label="Small"
+									aria-describedby="inputGroup-sizing-sm"
+									placeholder="the speed must be between 3 and 20"
+									min="3"
+									max="20"
+									required
+								/>
+							</div>
+						</div>
+						<!-- BODY (end) -->
+						<!-- FOOTER (begin) -->
+						<span class="modal-notif"></span>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Close
+							</button>
+							<button id="valid-set-bird" type="submit" class="btn btn-warning">
+								Save changes
+							</button>
+						</div>
+						<!-- FOOTER (end) -->
+					</div>
+				</div>
+			</div>
+			<!-- SET BIRD MODAL (end) -->
 		</section>
 		<script src="./bird.js"></script>
 		<script src="./lib/bootstrap.min.js"></script>
