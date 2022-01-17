@@ -148,10 +148,35 @@ class Bird {
 //############## CLASS BIRD (end) ##############
 //##############################################
 
+/**********************************/
+/****** GLOBAL VAR (begin) ********/
+/**********************************/
+/*
+--- ARGS ---
+id
+heightPosition[1;60], 
+beginDelay[0,1.5], 
+speed[perso], 
+birdSize[perso], 
+beatSpeed[0.5;1.5], 
+beatRealismBehaviour[0;2.xx]
+*/
+const bird = new Bird(); //instanciation de l'objet bird
+let count = 1;
+const birdNumbers = 30; //nombre d'oiseau a afficher (max 30)
+const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
+const speedMin = 3; //const
+let speedMax = 8; //const
+const sizeMin = 0.5;
+const sizeMax = 0.8;
+const ambianceType = 0; //1 ou 2
+/********************************/
+/****** GLOBAL VAR (end) ********/
+/********************************/
+
 //######################################
 //############ UTILS (begin) ###########
 //######################################
-const bird = new Bird(); //instanciation de l'objet bird
 
 //TODO: verified
 //--------- RANDOM SECTION (begin) --------
@@ -199,12 +224,40 @@ window.addEventListener('mousemove', e => {
 });
 //--------- CURSOR SECTION (begin) -------
 //--------- UI SECTION (begin) -------
+//---- reset data
 const resetBtn = document.querySelector('#user-interface button');
 
 resetBtn.addEventListener('click', () => {
 	bird.resetDatabase();
 	bird.getKillScore();
 });
+
+//---- set bird (modal control)
+const validBtnSetBird = document.getElementById('valid-set-bird');
+const speedInput = document.getElementById('speed-input');
+const modalNotif = document.querySelector('.modal-notif');
+
+function modalNotifCore(classInject, Message) {
+	classInject == 'modal-notif--error'
+		? modalNotif.classList.remove('modal-notif--success')
+		: modalNotif.classList.remove('modal-notif--error');
+	modalNotif.classList.add(classInject);
+	modalNotif.innerText = Message;
+}
+
+validBtnSetBird.addEventListener('click', () => {
+	//set speed
+	if (speedInput.value < 3 || speedInput.value > 20) {
+		modalNotifCore(
+			'modal-notif--error',
+			'Error ! the speed must be between 3 and 20',
+		);
+	} else {
+		modalNotifCore('modal-notif--success', 'Saved successfully!');
+		speedMax = speedInput.value;
+	}
+});
+
 //---------- UI SECTION (end) --------
 //######################################
 //############# UTILS (end) ############
@@ -213,25 +266,6 @@ resetBtn.addEventListener('click', () => {
 //######################################
 //############ MAIN (begin) ############
 //######################################
-/*
---- ARGS ---
-id
-heightPosition[1;60], 
-beginDelay[0,1.5], 
-speed[perso], 
-birdSize[perso], 
-beatSpeed[0.5;1.5], 
-beatRealismBehaviour[0;2.xx]
-*/
-let count = 1;
-const birdNumbers = 20; //nombre d'oiseau a afficher (max 30)
-const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
-const speedMin = 7;
-const speedMax = 9;
-const sizeMin = 0.5;
-const sizeMax = 0.8;
-const ambianceType = 0; //1 ou 2
-
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = () => {
 	bird.birdGen(
