@@ -151,22 +151,9 @@ class Bird {
 /**********************************/
 /****** GLOBAL (begin) ********/
 /**********************************/
-/*
---- ARGS ---
-id
-heightPosition[1;60], 
-beginDelay[0,1.5], 
-speed[perso], 
-birdSize[perso], 
-beatSpeed[0.5;1.5], 
-beatRealismBehaviour[0;2.xx]
-*/
 const bird = new Bird(); //instanciation de l'objet bird
 let count = 1; //const
-// let birdNumbers; //nombre d'oiseau a afficher (par defaut)
-// let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (par defaut)
 const speedMin = 3; //const
-// let speedMax = 8; //vitesse max de l'oiseau (par defaut)
 let sizeMin = 0.5;
 // let sizeMax = 0.8;
 let ambianceType = 0; //1 ou 2
@@ -176,13 +163,13 @@ let intervalId;
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = (birdNumbers, speedMax, sizeMax) => {
 	bird.birdGen(
-		randInt(1, birdNumbers), //max birdNumbers
-		randInt(1, 60), //max 60
-		randFloat(0, 1.5, 2), //const
-		randFloat(speedMin, speedMax, 2), //perso
-		randFloat(sizeMin, sizeMax, 2), //perso
-		randFloat(0.5, 1, 1), //const
-		randFloat(0, 2, 2), //const
+		randInt(1, birdNumbers), //id
+		randInt(1, 60), //heightPosition
+		randFloat(0, 1.5, 2), //beginDelay
+		randFloat(speedMin, speedMax, 2), //speed
+		randFloat(sizeMin, sizeMax, 2), //birdSize
+		randFloat(0.5, 1, 1), //beatSpeed
+		randFloat(0, 2, 2), //beatRealismBehaviour
 	);
 	count === birdNumbers ? clearInterval(intervalId) : count++;
 };
@@ -191,7 +178,7 @@ birdObject = (birdNumbers, speedMax, sizeMax) => {
 function START(birdNumbers, speedMax, sizeMax, birdInterval) {
 	intervalId = setInterval(function () {
 		birdObject(birdNumbers, speedMax, sizeMax);
-	}, birdInterval * 1000);
+	}, birdInterval * 1000); //birdInterval -> interval d'apparition en milliseconde (par defaut)
 }
 
 /********************************/
