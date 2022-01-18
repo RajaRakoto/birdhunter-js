@@ -149,7 +149,7 @@ class Bird {
 //##############################################
 
 /**********************************/
-/****** GLOBAL VAR (begin) ********/
+/****** GLOBAL (begin) ********/
 /**********************************/
 /*
 --- ARGS ---
@@ -162,17 +162,36 @@ beatSpeed[0.5;1.5],
 beatRealismBehaviour[0;2.xx]
 */
 const bird = new Bird(); //instanciation de l'objet bird
-let count = 1;
-let birdNumbers = 10; //nombre d'oiseau a afficher (max 30)
-let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (min 5)
+let count = 1; //const
+let birdNumbers = 10; //nombre d'oiseau a afficher (par defaut)
+let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (par defaut)
 const speedMin = 3; //const
-let speedMax = 8; //const
+let speedMax = 8; //vitesse max de l'oiseau (par defaut)
 let sizeMin = 0.5;
 let sizeMax = 0.8;
 let ambianceType = 0; //1 ou 2
 let intervalId;
+//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
+birdObject = () => {
+	bird.birdGen(
+		randInt(1, birdNumbers), //max birdNumbers
+		randInt(1, 60), //max 60
+		randFloat(0, 1.5, 2), //const
+		randFloat(speedMin, speedMax, 2), //perso
+		randFloat(sizeMin, sizeMax, 2), //perso
+		randFloat(0.5, 1, 1), //const
+		randFloat(0, 2, 2), //const
+	);
+
+	//casseur de setInterval
+	count === birdNumbers ? clearInterval(intervalId) : count++;
+};
+
+function START() {
+	intervalId = setInterval(birdObject, birdInterval);
+}
 /********************************/
-/****** GLOBAL VAR (end) ********/
+/****** GLOBAL (end) ********/
 /********************************/
 
 //######################################
@@ -316,30 +335,13 @@ validBtnSetBird.addEventListener('click', () => {
 //######################################
 //############ MAIN (begin) ############
 //######################################
-//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
-birdObject = () => {
-	bird.birdGen(
-		randInt(1, birdNumbers), //max birdNumbers
-		randInt(1, 60), //max 60
-		randFloat(0, 1.5, 2), //const
-		randFloat(speedMin, speedMax, 2), //perso
-		randFloat(sizeMin, sizeMax, 2), //perso
-		randFloat(0.5, 1, 1), //const
-		randFloat(0, 2, 2), //const
-	);
 
-	//casseur de setInterval
-	count === birdNumbers ? clearInterval(intervalId) : count++;
-};
 
 //CALLING (audio, bird)
 bird.getKillScore();
 setInterval(forestAmbiance(ambianceType), 113000);
 
 //TODO: working -> dynamic calling
-function START() {
-	intervalId = setInterval(birdObject, birdInterval);
-}
 
 START();
 //######################################
