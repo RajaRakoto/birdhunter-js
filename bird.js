@@ -149,7 +149,7 @@ class Bird {
 //##############################################
 
 /**********************************/
-/****** GLOBAL VAR (begin) ********/
+/****** GLOBAL (begin) ********/
 /**********************************/
 /*
 --- ARGS ---
@@ -162,16 +162,38 @@ beatSpeed[0.5;1.5],
 beatRealismBehaviour[0;2.xx]
 */
 const bird = new Bird(); //instanciation de l'objet bird
-let count = 1;
-const birdNumbers = 30; //nombre d'oiseau a afficher (max 30)
-const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
+let count = 1; //const
+let birdNumbers = 10; //nombre d'oiseau a afficher (par defaut)
+let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (par defaut)
 const speedMin = 3; //const
-let speedMax = 8; //const
-const sizeMin = 0.5;
-const sizeMax = 0.8;
-const ambianceType = 0; //1 ou 2
+let speedMax = 8; //vitesse max de l'oiseau (par defaut)
+let sizeMin = 0.5;
+let sizeMax = 0.8;
+let ambianceType = 0; //1 ou 2
+let intervalId;
+//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
+birdObject = (birdNumbers, speedMax) => {
+	bird.birdGen(
+		randInt(1, birdNumbers), //max birdNumbers
+		randInt(1, 60), //max 60
+		randFloat(0, 1.5, 2), //const
+		randFloat(speedMin, speedMax, 2), //perso
+		randFloat(sizeMin, sizeMax, 2), //perso
+		randFloat(0.5, 1, 1), //const
+		randFloat(0, 2, 2), //const
+	);
+	count === birdNumbers ? clearInterval(intervalId) : count++;
+};
+
+//TODO: working -> update args
+function START(birdNumbers, speedMax) {
+	intervalId = setInterval(function () {
+		birdObject(birdNumbers, speedMax);
+	}, birdInterval);
+}
+
 /********************************/
-/****** GLOBAL VAR (end) ********/
+/****** GLOBAL (end) ********/
 /********************************/
 
 //######################################
@@ -223,10 +245,12 @@ window.addEventListener('mousemove', e => {
 	cursor.style.top = e.pageY + 'px';
 });
 //--------- CURSOR SECTION (begin) -------
+
 //--------- UI SECTION (begin) -------
 //---- reset data
 const resetBtn = document.querySelector('#user-interface button');
 
+//TODO: verified
 resetBtn.addEventListener('click', () => {
 	bird.resetDatabase();
 	bird.getKillScore();
@@ -234,27 +258,70 @@ resetBtn.addEventListener('click', () => {
 
 //---- set bird (modal control)
 const validBtnSetBird = document.getElementById('valid-set-bird');
+const numbersInput = document.getElementById('numbers-input');
 const speedInput = document.getElementById('speed-input');
 const modalNotif = document.querySelector('.modal-notif');
 
-function modalNotifCore(classInject, Message) {
-	classInject == 'modal-notif--error'
+//TODO: verified
+//injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
+function modalNotifCore(classinject, message) {
+	classinject == 'modal-notif--error'
 		? modalNotif.classList.remove('modal-notif--success')
 		: modalNotif.classList.remove('modal-notif--error');
-	modalNotif.classList.add(classInject);
-	modalNotif.innerText = Message;
+	modalNotif.classList.add(classinject);
+	modalNotif.innerText = message;
 }
 
+//TODO: verified
+//controller si la valeur en input (input.value) n'est pas compris entre min et max
+let stopFlag = false; //ceci sert de drapeau pour appeler ou pas le declancheur START() - sa valeur varie du test effectuer dans modalErrorController et modalSuccessController
+function modalErrorController(input, min, max, classinject, message) {
+	if (input.value < min || input.value > max) {
+		modalNotifCore(classinject, message);
+		stopFlag = true;
+	}
+}
+
+//TODO: verified
+//controller si la valeur en input (input.value) est compris entre min et max
+let inputCount = 1;
+//sert simplement a verifier/compter les valeurs de 'input' modifiE dans modalSuccessController
+function modalSuccessController(input, min, max) {
+	if (input.value >= min && input.value <= max) {
+		modalNotifCore('modal-notif--success', 'Saved successfully !');
+		stopFlag = false;
+	}
+
+	console.log(`[set bird]: input${inputCount++} -> ${input.value}`);
+	return parseInt(input.value); //cast de 'input.value' en nombre entier
+}
+
+//TODO: working -> add all input
+//ecouteur d'evenement pour les 'input' de 'set bird'
 validBtnSetBird.addEventListener('click', () => {
-	//set speed
-	if (speedInput.value < 3 || speedInput.value > 20) {
-		modalNotifCore(
-			'modal-notif--error',
-			'Error ! the speed must be between 3 and 20',
-		);
-	} else {
-		modalNotifCore('modal-notif--success', 'Saved successfully!');
-		speedMax = speedInput.value;
+	//IMPORTANT!!! modalSuccessController AVANT modalErrorController PUIS START() avec test de stopFlag
+	//----------------- modalSuccessController (begin) -----------------
+	let input1 = modalSuccessController(numbersInput, 1, 50);
+	let input2 = modalSuccessController(speedInput, 3, 20);
+	//----------------- modalSuccessController (end) -----------------
+	//----------------- modalErrorController (begin) -----------------
+	modalErrorController(
+		numbersInput,
+		1,
+		50,
+		'modal-notif--error',
+		'Error ! the numbers must be between 1 and 50',
+	);
+	modalErrorController(
+		speedInput,
+		3,
+		20,
+		'modal-notif--error',
+		'Error ! the speed must be between 3 and 20',
+	);
+	//----------------- modalErrorController (end) -----------------
+	if (!stopFlag) {
+		START(input1, input2); //START CALLING
 	}
 });
 
@@ -263,29 +330,6 @@ validBtnSetBird.addEventListener('click', () => {
 //############# UTILS (end) ############
 //######################################
 
-//######################################
-//############ MAIN (begin) ############
-//######################################
-//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
-birdObject = () => {
-	bird.birdGen(
-		randInt(1, birdNumbers), //max birdNumbers
-		randInt(1, 60), //max 60
-		randFloat(0, 1.5, 2), //const
-		randFloat(speedMin, speedMax, 2), //perso
-		randFloat(sizeMin, sizeMax, 2), //perso
-		randFloat(0.5, 1, 1), //const
-		randFloat(0, 2, 2), //const
-	);
-
-	//casseur de setInterval
-	count === birdNumbers ? clearInterval(intervalId) : count++;
-};
-
-//CALLING (audio, bird)
+//CALLING (audio, bird, ...)
 bird.getKillScore();
 setInterval(forestAmbiance(ambianceType), 113000);
-const intervalId = setInterval(birdObject, birdInterval);
-//######################################
-//############# MAIN (end) #############
-//######################################
