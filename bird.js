@@ -172,7 +172,7 @@ let sizeMax = 0.8;
 let ambianceType = 0; //1 ou 2
 let intervalId;
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
-birdObject = () => {
+birdObject = birdNumbers => {
 	bird.birdGen(
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
@@ -187,8 +187,10 @@ birdObject = () => {
 	count === birdNumbers ? clearInterval(intervalId) : count++;
 };
 
-function START() {
-	intervalId = setInterval(birdObject, birdInterval);
+function START(birdNumbers) {
+	intervalId = setInterval(function () {
+		birdObject(birdNumbers);
+	}, birdInterval);
 }
 /********************************/
 /****** GLOBAL (end) ********/
@@ -304,7 +306,6 @@ function modalSuccessController(input, min, max) {
 	}
 }
 
-
 //TODO: working -> ...
 //ecouteur d'evenement pour les 'input' de 'set bird'
 validBtnSetBird.addEventListener('click', () => {
@@ -336,14 +337,13 @@ validBtnSetBird.addEventListener('click', () => {
 //############ MAIN (begin) ############
 //######################################
 
-
 //CALLING (audio, bird)
 bird.getKillScore();
 setInterval(forestAmbiance(ambianceType), 113000);
 
 //TODO: working -> dynamic calling
 
-START();
+
 //######################################
 //############# MAIN (end) #############
 //######################################
