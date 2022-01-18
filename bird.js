@@ -172,7 +172,7 @@ let sizeMax = 0.8;
 let ambianceType = 0; //1 ou 2
 let intervalId;
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
-birdObject = birdNumbers => {
+birdObject = (birdNumbers, speedMax) => {
 	bird.birdGen(
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
@@ -184,14 +184,20 @@ birdObject = birdNumbers => {
 	);
 
 	//casseur de setInterval
-	count === birdNumbers ? clearInterval(intervalId) : count++;
+	if (birdNumbers === 0) {
+		clearInterval(intervalId);
+		console.log('[break]: birdNumbers -> 0');
+	} else {
+		count === birdNumbers ? clearInterval(intervalId) : count++;
+	}
 };
 
-function START(birdNumbers) {
+function START(birdNumbers, speedMax) {
 	intervalId = setInterval(function () {
-		birdObject(birdNumbers);
+		birdObject(birdNumbers, speedMax);
 	}, birdInterval);
 }
+
 /********************************/
 /****** GLOBAL (end) ********/
 /********************************/
@@ -282,36 +288,22 @@ function modalErrorController(input, min, max, classinject, message) {
 
 //TODO: working -> ...
 //controller si la valeur en input (input.value) est compris entre min et max
+let inputCount = 1;
 function modalSuccessController(input, min, max) {
 	if (input.value >= min && input.value <= max) {
-		classinject = 'modal-notif--success';
-		message = 'Saved successfully !';
-		modalNotifCore(classinject, message);
-
-		switch (input) {
-			case numbersInput:
-				birdNumbers = input.value;
-				console.log('[set]: birdNumbers -> ' + input.value);
-				break;
-
-			case speedInput:
-				speedMax = input.value;
-				console.log('[set]: speedMax -> ' + input.value);
-				break;
-
-			default:
-				alert('test');
-				break;
-		}
+		modalNotifCore('modal-notif--success', 'Saved successfully !');
 	}
+
+	console.log(`[set bird]: input${inputCount++} -> ${input.value}`);
+	return parseInt(input.value);
 }
 
 //TODO: working -> ...
 //ecouteur d'evenement pour les 'input' de 'set bird'
 validBtnSetBird.addEventListener('click', () => {
 	//important: modalSuccessController AVANT modalErrorController
-	modalSuccessController(numbersInput, 1, 50);
-	modalSuccessController(speedInput, 3, 20);
+	let input1 = modalSuccessController(numbersInput, 1, 50);
+	let input2 = modalSuccessController(speedInput, 3, 20);
 	modalErrorController(
 		numbersInput,
 		1,
@@ -326,6 +318,8 @@ validBtnSetBird.addEventListener('click', () => {
 		'modal-notif--error',
 		'Error ! the speed must be between 3 and 20',
 	);
+
+	START(input1, input2);
 });
 
 //---------- UI SECTION (end) --------
@@ -342,7 +336,6 @@ bird.getKillScore();
 setInterval(forestAmbiance(ambianceType), 113000);
 
 //TODO: working -> dynamic calling
-
 
 //######################################
 //############# MAIN (end) #############
