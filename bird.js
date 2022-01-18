@@ -163,16 +163,18 @@ beatRealismBehaviour[0;2.xx]
 */
 const bird = new Bird(); //instanciation de l'objet bird
 let count = 1; //const
-let birdNumbers = 10; //nombre d'oiseau a afficher (par defaut)
+// let birdNumbers; //nombre d'oiseau a afficher (par defaut)
 let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (par defaut)
 const speedMin = 3; //const
-let speedMax = 8; //vitesse max de l'oiseau (par defaut)
+// let speedMax = 8; //vitesse max de l'oiseau (par defaut)
 let sizeMin = 0.5;
-let sizeMax = 0.8;
+// let sizeMax = 0.8;
 let ambianceType = 0; //1 ou 2
 let intervalId;
+
+//TODO: working -> update args
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
-birdObject = (birdNumbers, speedMax) => {
+birdObject = (birdNumbers, speedMax, sizeMax) => {
 	bird.birdGen(
 		randInt(1, birdNumbers), //max birdNumbers
 		randInt(1, 60), //max 60
@@ -186,9 +188,9 @@ birdObject = (birdNumbers, speedMax) => {
 };
 
 //TODO: working -> update args
-function START(birdNumbers, speedMax) {
+function START(birdNumbers, speedMax, sizeMax) {
 	intervalId = setInterval(function () {
-		birdObject(birdNumbers, speedMax);
+		birdObject(birdNumbers, speedMax, sizeMax);
 	}, birdInterval);
 }
 
@@ -260,6 +262,7 @@ resetBtn.addEventListener('click', () => {
 const validBtnSetBird = document.getElementById('valid-set-bird');
 const numbersInput = document.getElementById('numbers-input');
 const speedInput = document.getElementById('speed-input');
+const sizeInput = document.getElementById('size-input');
 const modalNotif = document.querySelector('.modal-notif');
 
 //TODO: verified
@@ -303,6 +306,7 @@ validBtnSetBird.addEventListener('click', () => {
 	//----------------- modalSuccessController (begin) -----------------
 	let input1 = modalSuccessController(numbersInput, 1, 50);
 	let input2 = modalSuccessController(speedInput, 3, 20);
+	let input3 = modalSuccessController(sizeInput, 0.5, 2);
 	//----------------- modalSuccessController (end) -----------------
 	//----------------- modalErrorController (begin) -----------------
 	modalErrorController(
@@ -319,9 +323,16 @@ validBtnSetBird.addEventListener('click', () => {
 		'modal-notif--error',
 		'Error ! the speed must be between 3 and 20',
 	);
+	modalErrorController(
+		sizeInput,
+		0.5,
+		2,
+		'modal-notif--error',
+		'Error ! the size must be between 0.5 and 2',
+	);
 	//----------------- modalErrorController (end) -----------------
 	if (!stopFlag) {
-		START(input1, input2); //START CALLING
+		START(input1, input2, input3); //START CALLING
 	}
 });
 
