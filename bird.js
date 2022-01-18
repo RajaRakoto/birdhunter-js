@@ -245,30 +245,34 @@ resetBtn.addEventListener('click', () => {
 	bird.getKillScore();
 });
 
-//---- set bird (modal control)
+//---- set bird|env (modal control)
 const validBtnSetBird = document.getElementById('valid-set-bird');
+const validBtnSetEnv = document.getElementById('valid-set-env');
 const numbersInput = document.getElementById('numbers-input');
 const speedInput = document.getElementById('speed-input');
 const sizeInput = document.getElementById('size-input');
 const intervalInput = document.getElementById('interval-input');
+const mapInput = document.getElementById('map-input');
 const modalNotif = document.querySelector('.modal-notif');
+const birdNotif = document.getElementById('bird-notif'); //section
+const envNotif = document.getElementById('env-notif'); //section
 
-//TODO: verified
+//TODO: working
 //injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
-function modalNotifCore(classinject, message) {
+function modalNotifCore(classinject, message, section) {
 	classinject == 'modal-notif--error'
-		? modalNotif.classList.remove('modal-notif--success')
-		: modalNotif.classList.remove('modal-notif--error');
-	modalNotif.classList.add(classinject);
-	modalNotif.innerText = message;
+		? section.classList.remove('modal-notif--success')
+		: section.classList.remove('modal-notif--error');
+	section.classList.add(classinject);
+	section.innerText = message;
 }
 
 //TODO: verified
 //controller si la valeur en input (input.value) n'est pas compris entre min et max
 let stopFlag = false; //ceci sert de drapeau pour appeler ou pas le declancheur START() - sa valeur varie du test effectuer dans modalErrorController et modalSuccessController
-function modalErrorController(input, min, max, classinject, message) {
+function modalErrorController(input, min, max, classinject, message, section) {
 	if (input.value < min || input.value > max) {
-		modalNotifCore(classinject, message);
+		modalNotifCore(classinject, message, section);
 		stopFlag = true;
 	}
 }
@@ -277,13 +281,13 @@ function modalErrorController(input, min, max, classinject, message) {
 //controller si la valeur en input (input.value) est compris entre min et max
 let inputCount = 1;
 //sert simplement a verifier/compter les valeurs de 'input' modifiE dans modalSuccessController
-function modalSuccessController(input, min, max) {
+function modalSuccessController(input, min, max, section) {
 	if (input.value >= min && input.value <= max) {
-		modalNotifCore('modal-notif--success', 'Saved successfully !');
+		modalNotifCore('modal-notif--success', 'Saved successfully !', section);
 		stopFlag = false;
 	}
 
-	console.log(`[set bird]: input${inputCount++} -> ${input.value}`);
+	// console.log(`[set bird]: input${inputCount++} -> ${input.value}`);
 	return parseInt(input.value); //cast de 'input.value' en nombre entier
 }
 
@@ -292,10 +296,10 @@ function modalSuccessController(input, min, max) {
 validBtnSetBird.addEventListener('click', () => {
 	//IMPORTANT!!! modalSuccessController AVANT modalErrorController PUIS START() avec test de stopFlag
 	//----------------- modalSuccessController (begin) -----------------
-	let input1 = modalSuccessController(numbersInput, 1, 50);
-	let input2 = modalSuccessController(speedInput, 3, 20);
-	let input3 = modalSuccessController(sizeInput, 0.5, 2);
-	let input4 = modalSuccessController(intervalInput, 1, 5);
+	let inputBird1 = modalSuccessController(numbersInput, 1, 50, birdNotif);
+	let inputBird2 = modalSuccessController(speedInput, 3, 20, birdNotif);
+	let inputBird3 = modalSuccessController(sizeInput, 0.5, 2, birdNotif);
+	let inputBird4 = modalSuccessController(intervalInput, 1, 5, birdNotif);
 	//----------------- modalSuccessController (end) -----------------
 	//----------------- modalErrorController (begin) -----------------
 	modalErrorController(
@@ -304,6 +308,7 @@ validBtnSetBird.addEventListener('click', () => {
 		50,
 		'modal-notif--error',
 		'Error ! the numbers must be between 1 and 50',
+		birdNotif,
 	);
 	modalErrorController(
 		speedInput,
@@ -311,6 +316,7 @@ validBtnSetBird.addEventListener('click', () => {
 		20,
 		'modal-notif--error',
 		'Error ! the speed must be between 3 and 20',
+		birdNotif,
 	);
 	modalErrorController(
 		sizeInput,
@@ -318,6 +324,7 @@ validBtnSetBird.addEventListener('click', () => {
 		2,
 		'modal-notif--error',
 		'Error ! the size must be between 0.5 and 2',
+		birdNotif,
 	);
 	modalErrorController(
 		intervalInput,
@@ -325,11 +332,25 @@ validBtnSetBird.addEventListener('click', () => {
 		5,
 		'modal-notif--error',
 		'Error ! the interval must be between 1 and 5',
+		birdNotif,
 	);
 	//----------------- modalErrorController (end) -----------------
 	if (!stopFlag) {
-		START(input1, input2, input3, input4); //START CALLING
+		START(inputBird1, inputBird2, inputBird3, inputBird4); //START CALLING
 	}
+});
+
+//TODO: working
+validBtnSetEnv.addEventListener('click', () => {
+	let inputEnv1 = modalSuccessController(mapInput, 1, 2, envNotif);
+	modalErrorController(
+		mapInput,
+		1,
+		2,
+		'modal-notif--error',
+		'Error ! the map must be between 1 and 2',
+		envNotif,
+	);
 });
 
 //---------- UI SECTION (end) --------
