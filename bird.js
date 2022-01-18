@@ -163,13 +163,14 @@ beatRealismBehaviour[0;2.xx]
 */
 const bird = new Bird(); //instanciation de l'objet bird
 let count = 1;
-const birdNumbers = 30; //nombre d'oiseau a afficher (max 30)
-const birdInterval = 5 * 1000; //interval d'apparition en milliseconde (min 5)
+let birdNumbers = 10; //nombre d'oiseau a afficher (max 30)
+let birdInterval = 1 * 1000; //interval d'apparition en milliseconde (min 5)
 const speedMin = 3; //const
 let speedMax = 8; //const
-const sizeMin = 0.5;
-const sizeMax = 0.8;
-const ambianceType = 0; //1 ou 2
+let sizeMin = 0.5;
+let sizeMax = 0.8;
+let ambianceType = 0; //1 ou 2
+let intervalId;
 /********************************/
 /****** GLOBAL VAR (end) ********/
 /********************************/
@@ -223,10 +224,12 @@ window.addEventListener('mousemove', e => {
 	cursor.style.top = e.pageY + 'px';
 });
 //--------- CURSOR SECTION (begin) -------
+
 //--------- UI SECTION (begin) -------
 //---- reset data
 const resetBtn = document.querySelector('#user-interface button');
 
+//TODO: verified
 resetBtn.addEventListener('click', () => {
 	bird.resetDatabase();
 	bird.getKillScore();
@@ -234,28 +237,75 @@ resetBtn.addEventListener('click', () => {
 
 //---- set bird (modal control)
 const validBtnSetBird = document.getElementById('valid-set-bird');
+const numbersInput = document.getElementById('numbers-input');
 const speedInput = document.getElementById('speed-input');
 const modalNotif = document.querySelector('.modal-notif');
 
-function modalNotifCore(classInject, Message) {
-	classInject == 'modal-notif--error'
+//TODO: verified
+//injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
+function modalNotifCore(classinject, message) {
+	classinject == 'modal-notif--error'
 		? modalNotif.classList.remove('modal-notif--success')
 		: modalNotif.classList.remove('modal-notif--error');
-	modalNotif.classList.add(classInject);
-	modalNotif.innerText = Message;
+	modalNotif.classList.add(classinject);
+	modalNotif.innerText = message;
 }
 
-validBtnSetBird.addEventListener('click', () => {
-	//set speed
-	if (speedInput.value < 3 || speedInput.value > 20) {
-		modalNotifCore(
-			'modal-notif--error',
-			'Error ! the speed must be between 3 and 20',
-		);
-	} else {
-		modalNotifCore('modal-notif--success', 'Saved successfully!');
-		speedMax = speedInput.value;
+//TODO: verified
+//controller si la valeur en input (input.value) n'est pas compris entre min et max
+function modalErrorController(input, min, max, classinject, message) {
+	if (input.value < min || input.value > max) {
+		modalNotifCore(classinject, message);
 	}
+}
+
+//TODO: working -> ...
+//controller si la valeur en input (input.value) est compris entre min et max
+function modalSuccessController(input, min, max) {
+	if (input.value >= min && input.value <= max) {
+		classinject = 'modal-notif--success';
+		message = 'Saved successfully !';
+		modalNotifCore(classinject, message);
+
+		switch (input) {
+			case numbersInput:
+				birdNumbers = input.value;
+				console.log('[set]: birdNumbers -> ' + input.value);
+				break;
+
+			case speedInput:
+				speedMax = input.value;
+				console.log('[set]: speedMax -> ' + input.value);
+				break;
+
+			default:
+				alert('test');
+				break;
+		}
+	}
+}
+
+
+//TODO: working -> ...
+//ecouteur d'evenement pour les 'input' de 'set bird'
+validBtnSetBird.addEventListener('click', () => {
+	//important: modalSuccessController AVANT modalErrorController
+	modalSuccessController(numbersInput, 1, 50);
+	modalSuccessController(speedInput, 3, 20);
+	modalErrorController(
+		numbersInput,
+		1,
+		50,
+		'modal-notif--error',
+		'Error ! the numbers must be between 1 and 50',
+	);
+	modalErrorController(
+		speedInput,
+		3,
+		20,
+		'modal-notif--error',
+		'Error ! the speed must be between 3 and 20',
+	);
 });
 
 //---------- UI SECTION (end) --------
@@ -285,7 +335,13 @@ birdObject = () => {
 //CALLING (audio, bird)
 bird.getKillScore();
 setInterval(forestAmbiance(ambianceType), 113000);
-const intervalId = setInterval(birdObject, birdInterval);
+
+//TODO: working -> dynamic calling
+function START() {
+	intervalId = setInterval(birdObject, birdInterval);
+}
+
+START();
 //######################################
 //############# MAIN (end) #############
 //######################################
