@@ -257,7 +257,7 @@ const modalNotif = document.querySelector('.modal-notif');
 const birdNotif = document.getElementById('bird-notif'); //section
 const envNotif = document.getElementById('env-notif'); //section
 
-//TODO: working
+//TODO: verified
 //injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
 function modalNotifCore(classinject, message, section) {
 	classinject == 'modal-notif--error'
@@ -291,7 +291,7 @@ function modalSuccessController(input, min, max, section) {
 	return parseInt(input.value); //cast de 'input.value' en nombre entier
 }
 
-//TODO: working -> add all input
+//TODO: verified
 //ecouteur d'evenement pour les 'input' de 'set bird'
 validBtnSetBird.addEventListener('click', () => {
 	//IMPORTANT!!! modalSuccessController AVANT modalErrorController PUIS START() avec test de stopFlag
@@ -340,7 +340,16 @@ validBtnSetBird.addEventListener('click', () => {
 	}
 });
 
-//TODO: working
+//TODO: verified
+function changeMap(choice) {
+	if (choice == 1) {
+		bird.getEnv().style.backgroundImage = "url('./img/bg0.jpg')";
+	} else if (choice == 2) {
+		bird.getEnv().style.backgroundImage = "url('./img/bg1.jpg')";
+	}
+}
+
+//TODO: verified
 validBtnSetEnv.addEventListener('click', () => {
 	let inputEnv1 = modalSuccessController(mapInput, 1, 2, envNotif);
 	modalErrorController(
@@ -351,6 +360,10 @@ validBtnSetEnv.addEventListener('click', () => {
 		'Error ! the map must be between 1 and 2',
 		envNotif,
 	);
+
+	if (!stopFlag) {
+		changeMap(inputEnv1);
+	}
 });
 
 //---------- UI SECTION (end) --------
