@@ -35,9 +35,12 @@ nav {
 	top: 0;
 	z-index: 4;
 	color: #eee;
+	opacity: 0.8;
+	transition: 0.5s;
 
 	&:hover {
 		cursor: pointer;
+		opacity: 1;
 	}
 
 	@media (max-width: 718px) {
@@ -81,7 +84,7 @@ h1 {
 	justify-content: center;
 }
 
-#user-interface {
+#kill-interface {
 	position: fixed;
 	min-width: 500px;
 	width: 25%;
@@ -98,8 +101,11 @@ h1 {
 	border-top-right-radius: 20px;
 	border: 10px solid #444;
 	z-index: 4;
-
+	opacity: 0.5;
+	transition: 0.5s;
+	
 	&:hover {
+		opacity: 1;
 		cursor: pointer;
 	}
 
