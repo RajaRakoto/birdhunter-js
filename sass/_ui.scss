@@ -57,15 +57,18 @@ h1 {
 }
 
 .menu {
-	// background-color: #eee;
 	color: #eee;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#menu-btn {
+	margin: auto;
 
 	button {
 		@include btn-theme();
-
+		
 		&:hover {
 			border: solid #eee 2px;
 		}
