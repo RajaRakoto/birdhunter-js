@@ -16,12 +16,20 @@
 					<button
 						type="button"
 						data-bs-toggle="modal"
-						data-bs-target="#exampleModal"
+						data-bs-target="#setBirdModal"
 					>
 						set bird
 					</button>
 				</div>
-				<div class="menu p-1 flex-fill"><button>set env</button></div>
+				<div class="menu p-1 flex-fill">
+					<button
+						type="button"
+						data-bs-toggle="modal"
+						data-bs-target="#setEnvModal"
+					>
+						set env
+					</button>
+				</div>
 				<!-- <div class="menu p-1 flex-fill"><button>test</button></div>
 				<div class="menu p-1 flex-fill"><button>test</button></div> -->
 			</div>
@@ -50,16 +58,16 @@
 			<!-- SET BIRD MODAL (begin) -->
 			<div
 				class="modal fade"
-				id="exampleModal"
+				id="setBirdModal"
 				tabindex="-1"
-				aria-labelledby="exampleModalLabel"
+				aria-labelledby="setBirdModalLabel"
 				aria-hidden="true"
 			>
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
 						<!-- HEADER (begin) -->
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">
+							<h5 class="modal-title" id="setBirdModalLabel">
 								Set bird's settings
 							</h5>
 							<button
@@ -74,9 +82,7 @@
 						<div class="modal-body">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
-									<span class="input-group-text" 
-										>Numbers</span
-									>
+									<span class="input-group-text">Numbers</span>
 								</div>
 								<input
 									id="numbers-input"
@@ -94,9 +100,7 @@
 						<div class="modal-body">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
-									<span class="input-group-text" 
-										>Speed</span
-									>
+									<span class="input-group-text">Speed</span>
 								</div>
 								<input
 									id="speed-input"
@@ -114,9 +118,7 @@
 						<div class="modal-body">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
-									<span class="input-group-text" 
-										>Size</span
-									>
+									<span class="input-group-text">Size</span>
 								</div>
 								<input
 									id="size-input"
@@ -134,9 +136,7 @@
 						<div class="modal-body">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
-									<span class="input-group-text" 
-										>Interval</span
-									>
+									<span class="input-group-text">Interval</span>
 								</div>
 								<input
 									id="interval-input"
@@ -153,7 +153,7 @@
 						</div>
 						<!-- BODY (end) -->
 						<!-- FOOTER (begin) -->
-						<span class="modal-notif"></span>
+						<span id="bird-notif" class="modal-notif"></span>
 						<div class="modal-footer">
 							<button
 								type="button"
@@ -171,6 +171,68 @@
 				</div>
 			</div>
 			<!-- SET BIRD MODAL (end) -->
+			<!-- SET ENV MODAL (begin) -->
+			<div
+				class="modal fade"
+				id="setEnvModal"
+				tabindex="-1"
+				aria-labelledby="setEnvModalLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<!-- HEADER (begin) -->
+						<div class="modal-header">
+							<h5 class="modal-title" id="setEnvModalLabel">
+								Set environment's settings
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<!-- HEADER (end) -->
+						<!-- BODY (begin) -->
+						<div class="modal-body">
+							<div class="input-group input-group-sm">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Map</span>
+								</div>
+								<input
+									id="map-input"
+									type="number"
+									class="form-control"
+									aria-label="Small"
+									aria-describedby="inputGroup-sizing-sm"
+									placeholder="1 - 2"
+									min="1"
+									max="2"
+									required
+								/>
+							</div>
+						</div>
+						<!-- BODY (end) -->
+						<!-- FOOTER (begin) -->
+						<span id="env-notif" class="modal-notif"></span>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Close
+							</button>
+							<button id="valid-set-env" type="submit" class="btn btn-warning">
+								Save changes
+							</button>
+						</div>
+						<!-- FOOTER (end) -->
+					</div>
+				</div>
+			</div>
+			<!-- SET ENV MODAL (end) -->
 		</section>
 		<script src="./bird.js"></script>
 		<script src="./lib/bootstrap.min.js"></script>
