@@ -156,7 +156,6 @@ let count = 1; //const
 const speedMin = 3; //const
 let sizeMin = 0.5;
 // let sizeMax = 0.8;
-let ambianceType = 0; //1 ou 2
 let intervalId;
 
 //TODO: working -> update args
@@ -203,20 +202,21 @@ randFloat = (min, max, after) => {
 
 //TODO: verified
 //--------- AUDIO SECTION (begin) ---------
+const ambianceAudio = new Audio(); //en dehors de la fonction forestAmbiance pour ne pas dupliquer le son a chaque chagement de la map
+
 function forestAmbiance(ambianceType) {
-	const audio = new Audio();
 	if (ambianceType == 1) {
-		audio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
+		ambianceAudio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
 	} else if (ambianceType == 2) {
-		audio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
+		ambianceAudio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
 	}
-	return audio.play();
+	ambianceAudio.play();
 }
 
+const shotAudio = new Audio();
 const shotGun = () => {
-	const audio = new Audio();
-	audio.src = './ogg/gun-shoot.ogg';
-	return audio.play();
+	shotAudio.src = './ogg/gun-shoot.ogg';
+	shotAudio.play();
 };
 
 bird.getEnv().addEventListener('click', () => {
@@ -342,22 +342,37 @@ validBtnSetBird.addEventListener('click', () => {
 
 //TODO: verified
 function changeMap(choice) {
-	if (choice == 1) {
-		bird.getEnv().style.backgroundImage = "url('./img/bg0.jpg')";
-	} else if (choice == 2) {
-		bird.getEnv().style.backgroundImage = "url('./img/bg1.jpg')";
+	switch (choice) {
+		case 1:
+			setInterval(forestAmbiance(1), 113000);
+			bird.getEnv().style.backgroundImage = "url('./img/bg0.jpg')";
+			break;
+		case 2:
+			setInterval(forestAmbiance(1), 113000);
+			bird.getEnv().style.backgroundImage = "url('./img/bg1.jpg')";
+			break;
+		default:
+			const allClouds = document.querySelectorAll('img');
+			setInterval(forestAmbiance(2), 113000);
+			bird.getEnv().style.backgroundImage = "url('./img/bg2.png')";
+			allClouds.forEach(cloud => {
+				//supprimer tout les nuages
+				cloud.remove();
+			});
+
+			break;
 	}
 }
 
 //TODO: verified
 validBtnSetEnv.addEventListener('click', () => {
-	let inputEnv1 = modalSuccessController(mapInput, 1, 2, envNotif);
+	let inputEnv1 = modalSuccessController(mapInput, 1, 3, envNotif);
 	modalErrorController(
 		mapInput,
 		1,
-		2,
+		3,
 		'modal-notif--error',
-		'Error ! the map must be between 1 and 2',
+		'Error ! the map must be between 1 and 3',
 		envNotif,
 	);
 
@@ -372,5 +387,5 @@ validBtnSetEnv.addEventListener('click', () => {
 //######################################
 
 //CALLING (audio, bird, ...)
+changeMap(1);
 bird.getKillScore();
-setInterval(forestAmbiance(ambianceType), 113000);
