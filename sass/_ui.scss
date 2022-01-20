@@ -57,15 +57,18 @@ h1 {
 }
 
 .menu {
-	// background-color: #eee;
 	color: #eee;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#menu-btn {
+	margin: auto;
 
 	button {
 		@include btn-theme();
-
+		
 		&:hover {
 			border: solid #eee 2px;
 		}
@@ -82,7 +85,7 @@ h1 {
 	position: fixed;
 	min-width: 500px;
 	width: 25%;
-	height: 165px;
+	height: 191px;
 	bottom: -1%;
 	background: rgb(107, 107, 107);
 	background: linear-gradient(
@@ -107,7 +110,7 @@ h1 {
 
 #kill-display {
 	text-align: center;
-	font-size: 20px;
+	font-size: 40px;
 	color: orangered;
 }
 
