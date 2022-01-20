@@ -384,6 +384,10 @@ validBtnSetEnv.addEventListener('click', () => {
 //TODO: working -> notification helper
 //help notification
 const numbersNotifyBtn = document.getElementById('numbers-notify-btn');
+const speedNotifyBtn = document.getElementById('speed-notify-btn');
+const sizeNotifyBtn = document.getElementById('size-notify-btn');
+const intervalNotifyBtn = document.getElementById('interval-notify-btn');
+const mapNotifyBtn = document.getElementById('map-notify-btn');
 
 function helper(notifID) {
 	let notifConcern = document.getElementById(notifID);
@@ -392,6 +396,22 @@ function helper(notifID) {
 
 numbersNotifyBtn.addEventListener('click', () => {
 	helper('numbers-notify');
+});
+
+speedNotifyBtn.addEventListener('click', () => {
+	helper('speed-notify');
+});
+
+sizeNotifyBtn.addEventListener('click', () => {
+	helper('size-notify');
+});
+
+intervalNotifyBtn.addEventListener('click', () => {
+	helper('interval-notify');
+});
+
+mapNotifyBtn.addEventListener('click', () => {
+	helper('map-notify');
 });
 
 //---------- UI SECTION (end) --------
