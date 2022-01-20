@@ -381,6 +381,19 @@ validBtnSetEnv.addEventListener('click', () => {
 	}
 });
 
+//TODO: working -> notification helper
+//help notification
+const numbersNotifyBtn = document.getElementById('numbers-notify-btn');
+
+function helper(notifID) {
+	let notifConcern = document.getElementById(notifID);
+	notifConcern.classList.toggle('show');
+}
+
+numbersNotifyBtn.addEventListener('click', () => {
+	helper('numbers-notify');
+});
+
 //---------- UI SECTION (end) --------
 //######################################
 //############# UTILS (end) ############
