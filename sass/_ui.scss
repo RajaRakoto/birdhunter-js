@@ -35,9 +35,12 @@ nav {
 	top: 0;
 	z-index: 4;
 	color: #eee;
+	opacity: 0.8;
+	transition: 0.5s;
 
 	&:hover {
 		cursor: pointer;
+		opacity: 1;
 	}
 
 	@media (max-width: 718px) {
@@ -68,7 +71,7 @@ h1 {
 
 	button {
 		@include btn-theme();
-		
+
 		&:hover {
 			border: solid #eee 2px;
 		}
@@ -81,7 +84,7 @@ h1 {
 	justify-content: center;
 }
 
-#user-interface {
+#kill-interface {
 	position: fixed;
 	min-width: 500px;
 	width: 25%;
@@ -98,8 +101,11 @@ h1 {
 	border-top-right-radius: 20px;
 	border: 10px solid #444;
 	z-index: 4;
+	opacity: 0.5;
+	transition: 0.5s;
 
 	&:hover {
+		opacity: 1;
 		cursor: pointer;
 	}
 
@@ -142,3 +148,77 @@ h1 {
 .modal-content {
 	opacity: 0.9;
 }
+
+/* NOTIF (begin) */
+
+.notify {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	.notifytext {
+		visibility: hidden;
+		width: 160px;
+		background-color: #555;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 10px;
+		position: absolute;
+		z-index: 1;
+		bottom: 125%;
+		left: 50%;
+		margin-left: -80px;
+		font-size: 12px;
+		opacity: 0.9;
+		border: solid aquamarine 2px;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: #555 transparent transparent transparent;
+		}
+	}
+
+	.show {
+		visibility: visible;
+		-webkit-animation: fadeIn 1s;
+		animation: fadeIn 1s;
+	}
+
+	&--btn {
+		width: 30px;
+		background-color: aquamarine;
+		border: solid #888 2px;
+		border-radius: 5px;
+	}
+}
+
+@-webkit-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* NOTIF (end) */
