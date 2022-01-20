@@ -237,7 +237,7 @@ window.addEventListener('mousemove', e => {
 
 //--------- UI SECTION (begin) -------
 //---- reset data
-const resetBtn = document.querySelector('#user-interface button');
+const resetBtn = document.querySelector('#kill-interface button');
 
 //TODO: verified
 resetBtn.addEventListener('click', () => {
