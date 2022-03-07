@@ -138,7 +138,7 @@ class Bird {
 
 			// let tmp = killCore(totalKilled);
 			setTimeout(function () {
-				killCore(totalKilled, birdToKill); //on englobe l'appelle de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
+				killCore(totalKilled, birdToKill); //on englobe l'appel de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
 			}, killDelay);
 		});
 		//--------- KILL SECTION (begin) --------
@@ -198,7 +198,7 @@ randFloat = (min, max, after) => {
 	let randCore = Math.random() * max + min;
 	return randCore.toFixed(after);
 };
-//--------- RANDOM SECTION (begin) --------
+//--------- RANDOM SECTION (end) --------
 
 //TODO: verified
 //--------- AUDIO SECTION (begin) ---------
