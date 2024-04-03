@@ -1,0 +1,38 @@
+{
+	"name": "birdhunter-js",
+	"version": "1.0.0",
+	"description": "Mini-game in vanilla JS inspired by From Scratch's bubble generator project, you play as the bird hunter 💛",
+	"author": "Raja Rakotonirina <raja.rakoto7@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/RajaRakoto/birdhunter-js.git"
+	},
+	"homepage": "https://github.com/RajaRakoto/birdhunter-js#readme",
+	"bugs": "https://github.com/RajaRakoto/birdhunter-js/issues",
+	"keywords": [
+		"javascript",
+		"dom",
+		"vanilla-js",
+		"minigame",
+		"hunter"
+	],
+	"scripts": {
+		"prettier": "prettier --config .prettierrc --write .",
+		"backup": "grunt backup",
+		"pkg-check": "depcheck",
+		"pkg-upgrade": "ncu --interactive --format group --packageManager bun",
+		"versioning": "ungit",
+		"npm-version:major": "npm version major",
+		"npm-version:minor": "npm version minor",
+		"npm-version:patch": "npm version patch"
+	},
+	"devDependencies": {
+		"depcheck": "^1.4.7",
+		"grunt": "^1.6.1",
+		"grunt-contrib-compress": "^2.0.0",
+		"load-grunt-tasks": "^5.1.0",
+		"npm-check-updates": "^16.14.15",
+		"prettier": "^3.2.5"
+	}
+}
