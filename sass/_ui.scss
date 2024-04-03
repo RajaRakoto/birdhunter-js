@@ -1,6 +1,6 @@
 @font-face {
 	font-family: quicksand;
-	src: url('./assets/fonts/quicksand.ttf');
+	src: url("./assets/fonts/quicksand.ttf");
 }
 
 @mixin btn-theme() {
@@ -178,7 +178,7 @@ h1 {
 		border: solid aquamarine 2px;
 
 		&::after {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 100%;
 			left: 50%;

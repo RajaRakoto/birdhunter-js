@@ -66,17 +66,15 @@ module.exports = function (grunt) {
 	// all grunt register tasks
 	grunt.registerTask("backup", [
 		"compress:main",
-    "compress:assets",
-    "compress:lib",
-    "compress:sass",
-    "compress:tmp",
+		"compress:assets",
+		"compress:lib",
+		"compress:sass",
+		"compress:tmp",
 	]);
 
 	// all tasks lists
 	const plumTaskNames = ["backup"];
-	const plumTaskStatus = [
-		"compress: main | assets | lib | sass | tmp",
-	];
+	const plumTaskStatus = ["compress: main | assets | lib | sass | tmp"];
 
 	// default tasks
 	grunt.registerTask("default", () => {
