@@ -18,12 +18,12 @@ body {
   background-blend-mode: soft-light;
   background-size: cover;
   background-position: center center;
-  background-image: url("../img/bg0.jpg");
+  background-image: url("../assets/img/bg0.jpg");
   filter: brightness(120%);
 }
 
 .bird {
-  background-image: url(../img/bird.svg);
+  background-image: url(../assets/img/bird.svg);
   background-size: auto 100%;
   width: 88px;
   height: 125px;
@@ -35,7 +35,7 @@ body {
   DESCRIPTION (animation battement):
    => On definisse ici l'animation de battement pour chaque oiseau
   	- animation-duration: duration du battement des ailes - c'est la duree d'une animation pour parcourir un cycle.
-  	- animation-delay: temps d'apparition (debut de l'animation) - plus sa valeur est grande, plus l'animation mettra du temps a demarrer 
+  	- animation-delay: temps d'apparition (debut de l'animation) - plus sa valeur est grande, plus l'animation mettra du temps a demarrer
   */
   /*
   FEATURES:
@@ -195,7 +195,7 @@ DESCRIPTION (animation deplacement):
 
 #cursor {
   position: relative;
-  background-image: url("../img/scope.svg");
+  background-image: url("../assets/img/scope.svg");
   background-position: center center;
   width: 288px;
   height: 288px;
