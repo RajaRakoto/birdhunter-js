@@ -1,12 +1,11 @@
 /* background settings */
-//TODO: verified
 * {
 	margin: 0;
 	padding: 0;
 }
 
 body {
-	overflow: hidden; //plein ecran
+	overflow: hidden; // plein ecran
 }
 
 #environment {
@@ -19,6 +18,6 @@ body {
 	background-blend-mode: soft-light;
 	background-size: cover;
 	background-position: center center;
-	background-image: url('../img/bg0.jpg');
+	background-image: url('../assets/img/bg0.jpg');
 	filter: brightness(120%);
 }

@@ -1,14 +1,14 @@
 #environment {
-	cursor: none; //cacher le curseur par defaut
+	cursor: none; // cacher le curseur par defaut
 }
 
 #cursor {
 	position: relative;
-	background-image: url('../img/scope.svg');
+	background-image: url('../assets/img/scope.svg');
 	background-position: center center;
 	width: 288px;
 	height: 288px;
 	z-index: 3;
-	pointer-events: none; //important
-	transform: translate(-333%, -187%); //full screen ajust 
+	pointer-events: none; // important
+	transform: translate(-333%, -187%); // full screen ajust
 }

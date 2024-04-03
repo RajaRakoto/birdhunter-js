@@ -1,20 +1,20 @@
 .bird {
-	background-image: url(../img/bird.svg);
+	background-image: url(../assets/img/bird.svg);
 	background-size: auto 100%;
-	width: 88px; //const
-	height: 125px; //const
+	width: 88px; // const
+	height: 125px; // const
 	will-change: background-position;
-	
 
-	animation-name: fly-cycle; //battement des ailes
+
+	animation-name: fly-cycle; // battement des ailes
 	animation-timing-function: steps(10);
-	animation-iteration-count: infinite; //boucler l'animation
+	animation-iteration-count: infinite; // boucler l'animation
 
 	/*
 	DESCRIPTION (animation battement):
 	 => On definisse ici l'animation de battement pour chaque oiseau
 		- animation-duration: duration du battement des ailes - c'est la duree d'une animation pour parcourir un cycle.
-		- animation-delay: temps d'apparition (debut de l'animation) - plus sa valeur est grande, plus l'animation mettra du temps a demarrer 
+		- animation-delay: temps d'apparition (debut de l'animation) - plus sa valeur est grande, plus l'animation mettra du temps a demarrer
 	*/
 
 	/*
@@ -23,7 +23,6 @@
 	  - On varie la valeur de `animation-delay -> --beat-behaviour` entre [0;5] pour un battement plus realiste
 	*/
 
-	//TODO: verified
 	&--beat {
 		animation-duration: var(--beatSpeed);
 		animation-delay: var(--beatRealismBehaviour);
@@ -45,23 +44,22 @@ DESCRIPTION (animation deplacement):
 
 .bird-container {
 	position: absolute;
-	// width: 2vh; //cible size
+	// width: 2vh; // cible size
 	// height: 2vh;
-	top: var(--heightPosition); //valeur Y de depart
-	left: -10%; //const
+	top: var(--heightPosition); // valeur Y de depart
+	left: -10%; // const
 	transform: scale(0) translateX(-10vw);
 	will-change: transform;
 
-	animation-name: fly-right; //deplacement vers la droite
-	animation-timing-function: linear; //deplacement lineaire
-	animation-iteration-count: infinite; //boucler l'animation
+	animation-name: fly-right; // deplacement vers la droite
+	animation-timing-function: linear; // deplacement lineaire
+	animation-iteration-count: infinite; // boucler l'animation
 
 	// border: solid orangered 5px;
 
-	//TODO: verified
 	&--shift {
-		animation-duration: var(--speed); //vitesse de deplacement
-		animation-delay: var(--beginDelay); //delai de depart
+		animation-duration: var(--speed); // vitesse de deplacement
+		animation-delay: var(--beginDelay); // delai de depart
 	}
 }
 
@@ -71,7 +69,6 @@ DESCRIPTION (animation deplacement):
 	}
 }
 
-//TODO: translateY value random
 //translateY (default) => 5 - 2 - 1 - 2 - 5 - 2 - 1
 //translateX (default) => const
 //scale (default) => 0.5
