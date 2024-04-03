@@ -1,6 +1,6 @@
-//################################################
-//############## CLASS BIRD (begin) ##############
-//################################################
+// ################################################
+// ############## CLASS BIRD (begin) ##############
+// ################################################
 class Bird {
 
 	createDivElement = () => {
@@ -25,7 +25,7 @@ class Bird {
 		- getItem = recuperer la valeur d'une cle
 		- setItem = modifier la valeur d'une cle
 	*/
-	//sert a reinitialiser le database
+	// sert a reinitialiser le database
 
 	resetDatabase = () => {
 		const resetValue = 0;
@@ -33,7 +33,7 @@ class Bird {
 	};
 
 
-	//sert a stocker/compter les oiseaux tuEs
+	// sert a stocker/compter les oiseaux tuEs
 	killedDatabase = () => {
 		let killedCounter = localStorage.getItem('killed-id');
 
@@ -54,40 +54,40 @@ class Bird {
 		beatRealismBehaviour,
 	) => {
 
-		//--------- MAKER SECTION (begin) --------
+		// --------- MAKER SECTION (begin) --------
 		const newBirdContainer = this.createDivElement();
-		newBirdContainer.id = 'bird-id-' + id; //id maker
+		newBirdContainer.id = 'bird-id-' + id; // id maker
 		newBirdContainer.className = 'bird-container bird-container--shift';
 		newBirdContainer.style.setProperty(
 			'--heightPosition',
 			heightPosition + '%',
-		); //position en hauteur de depart varie de 1 a 40 pourcent
-		newBirdContainer.style.setProperty('--beginDelay', beginDelay + 's'); //delai de depart (ex: 0 si aucun delai)
-		newBirdContainer.style.setProperty('--speed', speed + 's'); //vitesse de 	deplacement pour parcourir l'environnement varie de 5 a N seconde
-		newBirdContainer.style.setProperty('--birdSize', birdSize); //taille de chaque oiseau
+		); // position en hauteur de depart varie de 1 a 40 pourcent
+		newBirdContainer.style.setProperty('--beginDelay', beginDelay + 's'); // delai de depart (ex: 0 si aucun delai)
+		newBirdContainer.style.setProperty('--speed', speed + 's'); // vitesse de 	deplacement pour parcourir l'environnement varie de 5 a N seconde
+		newBirdContainer.style.setProperty('--birdSize', birdSize); // taille de chaque oiseau
 
 		const newBird = this.createDivElement();
 		newBird.className = 'bird bird--beat';
-		newBird.style.setProperty('--beatSpeed', beatSpeed + 's'); //vitesse de battement varie de 0.5 a 1.5 seconde
+		newBird.style.setProperty('--beatSpeed', beatSpeed + 's'); // vitesse de battement varie de 0.5 a 1.5 seconde
 		newBird.style.setProperty(
 			'--beatRealismBehaviour',
 			beatRealismBehaviour + 's',
-		); //comportement du battement varie de 0 a 2,xx seconde
+		); // comportement du battement varie de 0 a 2,xx seconde
 
-		//ajouter l'element 'newBird' en tant que fils de 'newBirdContainer'
+		// ajouter l'element 'newBird' en tant que fils de 'newBirdContainer'
 		newBirdContainer.appendChild(newBird);
 		let birdObject = newBirdContainer;
 		const env = this.getEnv();
 		const entryPoint = document.getElementById('entryPoint');
-		//injecter 'birdObject' avant 'entryPoint' dans 'env'
+		// injecter 'birdObject' avant 'entryPoint' dans 'env'
 		env.insertBefore(birdObject, entryPoint);
-		//--------- MAKER SECTION (end) --------
+		// --------- MAKER SECTION (end) --------
 
-		//=====================================================
+		// =====================================================
 
-		// //TODO: auto destruction (bug)
+		// // TODO: auto destruction (bug)
 		// function getScreenCoords(element) {
-		// 	//const syntax
+		// 	// const syntax
 		// 	let position = element.getBoundingClientRect();
 		// 	return window.screenX + position.right;
 		// }
@@ -95,10 +95,10 @@ class Bird {
 		// let intervalId = setInterval(autoDestruction, 100); //best calling interval = 50~200
 
 		// function autoDestruction() {
-		// 	//const syntax
+		// 	// const syntax
 		// 	// console.log(getScreenCoords(newBirdContainer));
 		// 	if (getScreenCoords(newBirdContainer) >= 1993) {
-		// 		//default valur 1993
+		// 		// default valur 1993
 		// 		const firstChild = env.firstChild.nextSibling;
 		// 		console.log(firstChild.id + ' - Destroy !');
 		// 		const birdToDestruct = document.getElementById(`${firstChild.id}`);
@@ -107,10 +107,10 @@ class Bird {
 		// 	}
 		// }
 
-		//=====================================================
+		// =====================================================
 
 
-		//--------- KILL SECTION (begin) --------
+		// --------- KILL SECTION (begin) --------
 		newBirdContainer.addEventListener('click', () => {
 			const killDisplay = document.getElementById('kill-display');
 			const totalKilled = this.killedDatabase(); //on recupere la valeur de 'killed-id' dans local storage
@@ -137,36 +137,36 @@ class Bird {
 
 			// let tmp = killCore(totalKilled);
 			setTimeout(function () {
-				killCore(totalKilled, birdToKill); //on englobe l'appel de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
+				killCore(totalKilled, birdToKill); // on englobe l'appel de killCore dans une fonction pour que setTimeout ne met pas en conflit avec son parametre 'totalKilled'
 			}, killDelay);
 		});
-		//--------- KILL SECTION (begin) --------
+		// --------- KILL SECTION (begin) --------
 	};
 }
-//##############################################
-//############## CLASS BIRD (end) ##############
-//##############################################
+// ##############################################
+// ############## CLASS BIRD (end) ##############
+// ##############################################
 
 /**********************************/
 /****** GLOBAL (begin) ********/
 /**********************************/
-const bird = new Bird(); //instanciation de l'objet bird
-let count = 1; //const
-const speedMin = 3; //const
+const bird = new Bird(); // instanciation de l'objet bird
+let count = 1; // const
+const speedMin = 3; // const
 let sizeMin = 0.5;
 // let sizeMax = 0.8;
 let intervalId;
 
-//On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
+// On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = (birdNumbers, speedMax, sizeMax) => {
 	bird.birdGen(
-		randInt(1, birdNumbers), //id
-		randInt(1, 60), //heightPosition
-		randFloat(0, 1.5, 2), //beginDelay
-		randFloat(speedMin, speedMax, 2), //speed
-		randFloat(sizeMin, sizeMax, 2), //birdSize
-		randFloat(0.5, 1, 1), //beatSpeed
-		randFloat(0, 2, 2), //beatRealismBehaviour
+		randInt(1, birdNumbers), // id
+		randInt(1, 60), // heightPosition
+		randFloat(0, 1.5, 2), // beginDelay
+		randFloat(speedMin, speedMax, 2), // speed
+		randFloat(sizeMin, sizeMax, 2), // birdSize
+		randFloat(0.5, 1, 1), // beatSpeed
+		randFloat(0, 2, 2), // beatRealismBehaviour
 	);
 	count === birdNumbers ? clearInterval(intervalId) : count++;
 };
@@ -174,18 +174,18 @@ birdObject = (birdNumbers, speedMax, sizeMax) => {
 function START(birdNumbers, speedMax, sizeMax, birdInterval) {
 	intervalId = setInterval(function () {
 		birdObject(birdNumbers, speedMax, sizeMax);
-	}, birdInterval * 1000); //birdInterval -> interval d'apparition en milliseconde (par defaut)
+	}, birdInterval * 1000); // birdInterval -> interval d'apparition en milliseconde (par defaut)
 }
 
 /********************************/
 /****** GLOBAL (end) ********/
 /********************************/
 
-//######################################
-//############ UTILS (begin) ###########
-//######################################
+// ######################################
+// ############ UTILS (begin) ###########
+// ######################################
 
-//--------- RANDOM SECTION (begin) --------
+// --------- RANDOM SECTION (begin) --------
 randInt = (min, max) => {
 	return Math.round(Math.random() * max + min);
 };
@@ -194,16 +194,16 @@ randFloat = (min, max, after) => {
 	let randCore = Math.random() * max + min;
 	return randCore.toFixed(after);
 };
-//--------- RANDOM SECTION (end) --------
+// --------- RANDOM SECTION (end) --------
 
-//--------- AUDIO SECTION (begin) ---------
-const ambianceAudio = new Audio(); //en dehors de la fonction forestAmbiance pour ne pas dupliquer le son a chaque chagement de la map
+// --------- AUDIO SECTION (begin) ---------
+const ambianceAudio = new Audio(); // en dehors de la fonction forestAmbiance pour ne pas dupliquer le son a chaque chagement de la map
 
 function forestAmbiance(ambianceType) {
 	if (ambianceType == 1) {
-		ambianceAudio.src = './assets/ogg/birds-song-in-forest.ogg'; //delay 113000ms
+		ambianceAudio.src = './assets/ogg/birds-song-in-forest.ogg'; // delay 113000ms
 	} else if (ambianceType == 2) {
-		ambianceAudio.src = './assets/ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
+		ambianceAudio.src = './assets/ogg/afternoon-birds-song-in-forest.ogg'; // delay 113000ms
 	}
 	ambianceAudio.play();
 }
@@ -217,20 +217,20 @@ const shotGun = () => {
 bird.getEnv().addEventListener('click', () => {
 	shotGun();
 });
-//--------- AUDIO SECTION (end) ---------
+// --------- AUDIO SECTION (end) ---------
 
-//--------- CURSOR SECTION (begin) -------
+// --------- CURSOR SECTION (begin) -------
 const cursor = document.getElementById('cursor');
-//le parametre e (event) permet de tracer l'evenement (trace les donnees de l'evenement)
+// le parametre e (event) permet de tracer l'evenement (trace les donnees de l'evenement)
 window.addEventListener('mousemove', e => {
-	//permet de suivre automatiquement le pointeur
+	// permet de suivre automatiquement le pointeur
 	cursor.style.left = e.pageX + 'px';
 	cursor.style.top = e.pageY + 'px';
 });
-//--------- CURSOR SECTION (begin) -------
+// --------- CURSOR SECTION (begin) -------
 
-//--------- UI SECTION (begin) -------
-//---- reset data
+// --------- UI SECTION (begin) -------
+// ---- reset data
 const resetBtn = document.querySelector('#kill-interface button');
 
 resetBtn.addEventListener('click', () => {
@@ -238,7 +238,7 @@ resetBtn.addEventListener('click', () => {
 	bird.getKillScore();
 });
 
-//---- set bird|env (modal control)
+// ---- set bird|env (modal control)
 const validBtnSetBird = document.getElementById('valid-set-bird');
 const validBtnSetEnv = document.getElementById('valid-set-env');
 const numbersInput = document.getElementById('numbers-input');
@@ -250,7 +250,7 @@ const modalNotif = document.querySelector('.modal-notif');
 const birdNotif = document.getElementById('bird-notif'); //section
 const envNotif = document.getElementById('env-notif'); //section
 
-//injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
+// injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
 function modalNotifCore(classinject, message, section) {
 	classinject == 'modal-notif--error'
 		? section.classList.remove('modal-notif--success')
@@ -259,7 +259,7 @@ function modalNotifCore(classinject, message, section) {
 	section.innerText = message;
 }
 
-//controller si la valeur en input (input.value) n'est pas compris entre min et max
+// controller si la valeur en input (input.value) n'est pas compris entre min et max
 let stopFlag = false; //ceci sert de drapeau pour appeler ou pas le declancheur START() - sa valeur varie du test effectuer dans modalErrorController et modalSuccessController
 function modalErrorController(input, min, max, classinject, message, section) {
 	if (input.value < min || input.value > max) {
@@ -268,9 +268,9 @@ function modalErrorController(input, min, max, classinject, message, section) {
 	}
 }
 
-//controller si la valeur en input (input.value) est compris entre min et max
+// controller si la valeur en input (input.value) est compris entre min et max
 let inputCount = 1;
-//sert simplement a verifier/compter les valeurs de 'input' modifiE dans modalSuccessController
+// sert simplement a verifier/compter les valeurs de 'input' modifiE dans modalSuccessController
 function modalSuccessController(input, min, max, section) {
 	if (input.value >= min && input.value <= max) {
 		modalNotifCore('modal-notif--success', 'Saved successfully !', section);
@@ -281,16 +281,16 @@ function modalSuccessController(input, min, max, section) {
 	return parseInt(input.value); //cast de 'input.value' en nombre entier
 }
 
-//ecouteur d'evenement pour les 'input' de 'set bird'
+// ecouteur d'evenement pour les 'input' de 'set bird'
 validBtnSetBird.addEventListener('click', () => {
-	//IMPORTANT!!! modalSuccessController AVANT modalErrorController PUIS START() avec test de stopFlag
-	//----------------- modalSuccessController (begin) -----------------
+	// IMPORTANT!!! modalSuccessController AVANT modalErrorController PUIS START() avec test de stopFlag
+	// ----------------- modalSuccessController (begin) -----------------
 	let inputBird1 = modalSuccessController(numbersInput, 1, 50, birdNotif);
 	let inputBird2 = modalSuccessController(speedInput, 3, 20, birdNotif);
 	let inputBird3 = modalSuccessController(sizeInput, 0.5, 2, birdNotif);
 	let inputBird4 = modalSuccessController(intervalInput, 1, 5, birdNotif);
-	//----------------- modalSuccessController (end) -----------------
-	//----------------- modalErrorController (begin) -----------------
+	// ----------------- modalSuccessController (end) -----------------
+	// ----------------- modalErrorController (begin) -----------------
 	modalErrorController(
 		numbersInput,
 		1,
@@ -323,7 +323,7 @@ validBtnSetBird.addEventListener('click', () => {
 		'Error ! the interval must be between 1 and 5',
 		birdNotif,
 	);
-	//----------------- modalErrorController (end) -----------------
+	// ----------------- modalErrorController (end) -----------------
 	if (!stopFlag) {
 		START(inputBird1, inputBird2, inputBird3, inputBird4); //START CALLING
 	}
@@ -344,7 +344,7 @@ function changeMap(choice) {
 			setInterval(forestAmbiance(2), 113000);
 			bird.getEnv().style.backgroundImage = "url('./assets/img/bg2.png')";
 			allClouds.forEach(cloud => {
-				//supprimer tout les nuages
+				// supprimer tout les nuages
 				cloud.remove();
 			});
 
@@ -368,8 +368,8 @@ validBtnSetEnv.addEventListener('click', () => {
 	}
 });
 
-//TODO: working -> notification helper
-//help notification
+// TODO: working -> notification helper
+// help notification
 const numbersNotifyBtn = document.getElementById('numbers-notify-btn');
 const speedNotifyBtn = document.getElementById('speed-notify-btn');
 const sizeNotifyBtn = document.getElementById('size-notify-btn');
@@ -401,11 +401,11 @@ mapNotifyBtn.addEventListener('click', () => {
 	helper('map-notify');
 });
 
-//---------- UI SECTION (end) --------
-//######################################
-//############# UTILS (end) ############
-//######################################
+// ---------- UI SECTION (end) --------
+// ######################################
+// ############# UTILS (end) ############
+// ######################################
 
-//CALLING (audio, bird, ...)
+// CALLING (audio, bird, ...)
 changeMap(1);
 bird.getKillScore();
