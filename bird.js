@@ -2,17 +2,17 @@
 //############## CLASS BIRD (begin) ##############
 //################################################
 class Bird {
-	//TODO: verified
+
 	createDivElement = () => {
 		return document.createElement('div');
 	};
 
-	//TODO: verified
+
 	getEnv = () => {
 		return document.getElementById('environment');
 	};
 
-	//TODO: verified
+
 	getKillScore = () => {
 		const killDisplay = document.getElementById('kill-display');
 		let killScore = localStorage.getItem('killed-id');
@@ -26,13 +26,13 @@ class Bird {
 		- setItem = modifier la valeur d'une cle
 	*/
 	//sert a reinitialiser le database
-	//TODO: verified
+
 	resetDatabase = () => {
 		const resetValue = 0;
 		localStorage.setItem('killed-id', resetValue);
 	};
 
-	//TODO: verified
+
 	//sert a stocker/compter les oiseaux tuEs
 	killedDatabase = () => {
 		let killedCounter = localStorage.getItem('killed-id');
@@ -53,7 +53,7 @@ class Bird {
 		beatSpeed,
 		beatRealismBehaviour,
 	) => {
-		//tODO: verified
+
 		//--------- MAKER SECTION (begin) --------
 		const newBirdContainer = this.createDivElement();
 		newBirdContainer.id = 'bird-id-' + id; //id maker
@@ -109,7 +109,7 @@ class Bird {
 
 		//=====================================================
 
-		//TODO: verified
+
 		//--------- KILL SECTION (begin) --------
 		newBirdContainer.addEventListener('click', () => {
 			const killDisplay = document.getElementById('kill-display');
@@ -118,7 +118,6 @@ class Bird {
 			const killDelay = 1 * 1000; //delai avant de supprimer l'element 'birdToKill' (2s)
 			killDisplay.innerText = totalKilled;
 
-			//TODO: verified (feat: add drop anim)
 			function killAnimation() {
 				newBird.style.setProperty('--beatSpeed', 10 + 's'); //const
 				function anim0() {
@@ -158,7 +157,6 @@ let sizeMin = 0.5;
 // let sizeMax = 0.8;
 let intervalId;
 
-//TODO: working -> update args
 //On englobe le generateur d'oiseau dans une fonction pour le boucler dans setInterval
 birdObject = (birdNumbers, speedMax, sizeMax) => {
 	bird.birdGen(
@@ -173,7 +171,6 @@ birdObject = (birdNumbers, speedMax, sizeMax) => {
 	count === birdNumbers ? clearInterval(intervalId) : count++;
 };
 
-//TODO: working -> update args
 function START(birdNumbers, speedMax, sizeMax, birdInterval) {
 	intervalId = setInterval(function () {
 		birdObject(birdNumbers, speedMax, sizeMax);
@@ -188,7 +185,6 @@ function START(birdNumbers, speedMax, sizeMax, birdInterval) {
 //############ UTILS (begin) ###########
 //######################################
 
-//TODO: verified
 //--------- RANDOM SECTION (begin) --------
 randInt = (min, max) => {
 	return Math.round(Math.random() * max + min);
@@ -200,22 +196,21 @@ randFloat = (min, max, after) => {
 };
 //--------- RANDOM SECTION (end) --------
 
-//TODO: verified
 //--------- AUDIO SECTION (begin) ---------
 const ambianceAudio = new Audio(); //en dehors de la fonction forestAmbiance pour ne pas dupliquer le son a chaque chagement de la map
 
 function forestAmbiance(ambianceType) {
 	if (ambianceType == 1) {
-		ambianceAudio.src = './ogg/birds-song-in-forest.ogg'; //delay 113000ms
+		ambianceAudio.src = './assets/ogg/birds-song-in-forest.ogg'; //delay 113000ms
 	} else if (ambianceType == 2) {
-		ambianceAudio.src = './ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
+		ambianceAudio.src = './assets/ogg/afternoon-birds-song-in-forest.ogg'; //delay 113000ms
 	}
 	ambianceAudio.play();
 }
 
 const shotAudio = new Audio();
 const shotGun = () => {
-	shotAudio.src = './ogg/gun-shoot.ogg';
+	shotAudio.src = './assets/ogg/gun-shoot.ogg';
 	shotAudio.play();
 };
 
@@ -224,7 +219,6 @@ bird.getEnv().addEventListener('click', () => {
 });
 //--------- AUDIO SECTION (end) ---------
 
-//TODO: verified (no full screen adaptable)
 //--------- CURSOR SECTION (begin) -------
 const cursor = document.getElementById('cursor');
 //le parametre e (event) permet de tracer l'evenement (trace les donnees de l'evenement)
@@ -239,7 +233,6 @@ window.addEventListener('mousemove', e => {
 //---- reset data
 const resetBtn = document.querySelector('#kill-interface button');
 
-//TODO: verified
 resetBtn.addEventListener('click', () => {
 	bird.resetDatabase();
 	bird.getKillScore();
@@ -257,7 +250,6 @@ const modalNotif = document.querySelector('.modal-notif');
 const birdNotif = document.getElementById('bird-notif'); //section
 const envNotif = document.getElementById('env-notif'); //section
 
-//TODO: verified
 //injection de la classe correspondant au test (modalErrorController et modalSuccessController) de la valeur en input (input.value)
 function modalNotifCore(classinject, message, section) {
 	classinject == 'modal-notif--error'
@@ -267,7 +259,6 @@ function modalNotifCore(classinject, message, section) {
 	section.innerText = message;
 }
 
-//TODO: verified
 //controller si la valeur en input (input.value) n'est pas compris entre min et max
 let stopFlag = false; //ceci sert de drapeau pour appeler ou pas le declancheur START() - sa valeur varie du test effectuer dans modalErrorController et modalSuccessController
 function modalErrorController(input, min, max, classinject, message, section) {
@@ -277,7 +268,6 @@ function modalErrorController(input, min, max, classinject, message, section) {
 	}
 }
 
-//TODO: verified
 //controller si la valeur en input (input.value) est compris entre min et max
 let inputCount = 1;
 //sert simplement a verifier/compter les valeurs de 'input' modifiE dans modalSuccessController
@@ -291,7 +281,6 @@ function modalSuccessController(input, min, max, section) {
 	return parseInt(input.value); //cast de 'input.value' en nombre entier
 }
 
-//TODO: verified
 //ecouteur d'evenement pour les 'input' de 'set bird'
 validBtnSetBird.addEventListener('click', () => {
 	//IMPORTANT!!! modalSuccessController AVANT modalErrorController PUIS START() avec test de stopFlag
@@ -340,21 +329,20 @@ validBtnSetBird.addEventListener('click', () => {
 	}
 });
 
-//TODO: verified
 function changeMap(choice) {
 	switch (choice) {
 		case 1:
 			setInterval(forestAmbiance(1), 113000);
-			bird.getEnv().style.backgroundImage = "url('./img/bg0.jpg')";
+			bird.getEnv().style.backgroundImage = "url('./assets/img/bg0.jpg')";
 			break;
 		case 2:
 			setInterval(forestAmbiance(1), 113000);
-			bird.getEnv().style.backgroundImage = "url('./img/bg1.jpg')";
+			bird.getEnv().style.backgroundImage = "url('./assets/img/bg1.jpg')";
 			break;
 		default:
 			const allClouds = document.querySelectorAll('img');
 			setInterval(forestAmbiance(2), 113000);
-			bird.getEnv().style.backgroundImage = "url('./img/bg2.png')";
+			bird.getEnv().style.backgroundImage = "url('./assets/img/bg2.png')";
 			allClouds.forEach(cloud => {
 				//supprimer tout les nuages
 				cloud.remove();
@@ -364,7 +352,6 @@ function changeMap(choice) {
 	}
 }
 
-//TODO: verified
 validBtnSetEnv.addEventListener('click', () => {
 	let inputEnv1 = modalSuccessController(mapInput, 1, 3, envNotif);
 	modalErrorController(
