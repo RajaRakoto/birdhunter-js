@@ -8,4 +8,4 @@
 
 ### 📌 Demo
 
-<img src="https://github.com/RajaRakoto/img-docs/blob/master/birdhunter-js/demo.gif?raw=true" width="800">
+<img src="https://github.com/RajaRakoto/github-docs/blob/master/birdhunter-js/demo.gif?raw=true" width="800">
