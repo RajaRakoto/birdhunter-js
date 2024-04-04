@@ -68,10 +68,10 @@ DESCRIPTION (animation deplacement):
 	}
 }
 
-//translateY (default) => 5 - 2 - 1 - 2 - 5 - 2 - 1
-//translateX (default) => const
-//scale (default) => 0.5
-//rotate (default) => 0
+// translateY (default) => 5 - 2 - 1 - 2 - 5 - 2 - 1
+// translateX (default) => const
+// scale (default) => 0.5
+// rotate (default) => 0
 @keyframes fly-right {
 	0% {
 		transform: scale(var(--birdSize)) translateX(-10vw) rotate(0deg);
