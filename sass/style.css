@@ -1,51 +1,51 @@
 /* background settings */
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 #environment {
-  z-index: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-blend-mode: soft-light;
-  background-size: cover;
-  background-position: center center;
-  background-image: url("../assets/img/bg0.jpg");
-  filter: brightness(120%);
+	z-index: 1;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background-blend-mode: soft-light;
+	background-size: cover;
+	background-position: center center;
+	background-image: url("../assets/img/bg0.jpg");
+	filter: brightness(120%);
 }
 
 .bird {
-  background-image: url("../assets/img/bird.svg");
-  background-size: auto 100%;
-  width: 88px;
-  height: 125px;
-  will-change: background-position;
-  animation-name: fly-cycle;
-  animation-timing-function: steps(10);
-  animation-iteration-count: infinite;
-  /*
+	background-image: url("../assets/img/bird.svg");
+	background-size: auto 100%;
+	width: 88px;
+	height: 125px;
+	will-change: background-position;
+	animation-name: fly-cycle;
+	animation-timing-function: steps(10);
+	animation-iteration-count: infinite;
+	/*
   DESCRIPTION (animation battement):
    => On definisse ici l'animation de battement pour chaque oiseau
   	- animation-duration: duration du battement des ailes - c'est la duree d'une animation pour parcourir un cycle.
   	- animation-delay: temps d'apparition (debut de l'animation) - plus sa valeur est grande, plus l'animation mettra du temps a demarrer
   */
-  /*
+	/*
   FEATURES:
   	- On varie la valeur de `animation-duration` entre [0.5;1.5] pour une vitesse de battement different pour chaque oiseau
     - On varie la valeur de `animation-delay -> --beat-behaviour` entre [0;5] pour un battement plus realiste
   */
 }
 .bird--beat {
-  animation-duration: var(--beatSpeed);
-  animation-delay: var(--beatRealismBehaviour);
+	animation-duration: var(--beatSpeed);
+	animation-delay: var(--beatRealismBehaviour);
 }
 
 /*
@@ -60,50 +60,57 @@ DESCRIPTION (animation deplacement):
 		- On varie `translateY` de `transform` tout les N seconde pour eviter un deplacement horizontale constante
 	*/
 .bird-container {
-  position: absolute;
-  top: var(--heightPosition);
-  left: -10%;
-  transform: scale(0) translateX(-10vw);
-  will-change: transform;
-  animation-name: fly-right;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+	position: absolute;
+	top: var(--heightPosition);
+	left: -10%;
+	transform: scale(0) translateX(-10vw);
+	will-change: transform;
+	animation-name: fly-right;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 .bird-container--shift {
-  animation-duration: var(--speed);
-  animation-delay: var(--beginDelay);
+	animation-duration: var(--speed);
+	animation-delay: var(--beginDelay);
 }
 
 @keyframes fly-cycle {
-  100% {
-    background-position: -900px 0;
-  }
+	100% {
+		background-position: -900px 0;
+	}
 }
 @keyframes fly-right {
-  0% {
-    transform: scale(var(--birdSize)) translateX(-10vw) rotate(0deg);
-  }
-  10% {
-    transform: translateY(5vh) translateX(10vw) scale(var(--birdSize)) rotate(0deg);
-  }
-  20% {
-    transform: translateY(2vh) translateX(30vw) scale(var(--birdSize)) rotate(0deg);
-  }
-  30% {
-    transform: translateY(1vh) translateX(50vw) scale(var(--birdSize)) rotate(0deg);
-  }
-  40% {
-    transform: translateY(2vh) translateX(70vw) scale(var(--birdSize)) rotate(0deg);
-  }
-  50% {
-    transform: translateY(5vh) translateX(90vw) scale(var(--birdSize)) rotate(0deg);
-  }
-  60% {
-    transform: translateY(2vh) translateX(110vw) scale(var(--birdSize)) rotate(0deg);
-  }
-  100% {
-    transform: translateY(1vh) translateX(110vw) scale(var(--birdSize)) rotate(0deg);
-  }
+	0% {
+		transform: scale(var(--birdSize)) translateX(-10vw) rotate(0deg);
+	}
+	10% {
+		transform: translateY(5vh) translateX(10vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
+	20% {
+		transform: translateY(2vh) translateX(30vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
+	30% {
+		transform: translateY(1vh) translateX(50vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
+	40% {
+		transform: translateY(2vh) translateX(70vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
+	50% {
+		transform: translateY(5vh) translateX(90vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
+	60% {
+		transform: translateY(2vh) translateX(110vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
+	100% {
+		transform: translateY(1vh) translateX(110vw) scale(var(--birdSize))
+			rotate(0deg);
+	}
 }
 .cloud-1,
 .cloud-2,
@@ -112,303 +119,308 @@ DESCRIPTION (animation deplacement):
 .cloud-5,
 .cloud-6,
 .cloud-7 {
-  position: fixed;
-  z-index: 2;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-timing-function: linear;
-  pointer-events: none;
+	position: fixed;
+	z-index: 2;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: linear;
+	pointer-events: none;
 }
 
 .cloud-1 {
-  top: 30px;
-  animation-name: cloud-anim;
-  animation-duration: 50s;
-  animation-delay: -20s;
-  width: 200px;
+	top: 30px;
+	animation-name: cloud-anim;
+	animation-duration: 50s;
+	animation-delay: -20s;
+	width: 200px;
 }
 
 .cloud-2 {
-  top: 180px;
-  animation-name: cloud-anim;
-  animation-duration: 120s;
-  animation-delay: -60s;
-  width: 150px;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+	top: 180px;
+	animation-name: cloud-anim;
+	animation-duration: 120s;
+	animation-delay: -60s;
+	width: 150px;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
 }
 
 .cloud-3 {
-  top: 405px;
-  animation-name: cloud-anim;
-  animation-duration: 190s;
-  animation-delay: -55s;
-  width: 250px;
-  left: -20%;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+	top: 405px;
+	animation-name: cloud-anim;
+	animation-duration: 190s;
+	animation-delay: -55s;
+	width: 250px;
+	left: -20%;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
 }
 
 .cloud-4 {
-  top: 190px;
-  animation-name: cloud-anim;
-  animation-duration: 140s;
-  animation-delay: -20s;
-  width: 210px;
+	top: 190px;
+	animation-name: cloud-anim;
+	animation-duration: 140s;
+	animation-delay: -20s;
+	width: 210px;
 }
 
 .cloud-5 {
-  top: 500px;
-  animation-name: cloud-anim;
-  animation-duration: 80s;
-  animation-delay: -30s;
-  width: 350px;
+	top: 500px;
+	animation-name: cloud-anim;
+	animation-duration: 80s;
+	animation-delay: -30s;
+	width: 350px;
 }
 
 .cloud-6 {
-  top: 450px;
-  animation-name: cloud-anim;
-  animation-duration: 42s;
-  animation-delay: -55s;
-  width: 170px;
+	top: 450px;
+	animation-name: cloud-anim;
+	animation-duration: 42s;
+	animation-delay: -55s;
+	width: 170px;
 }
 
 .cloud-7 {
-  top: 400px;
-  animation-name: cloud-anim;
-  animation-duration: 50s;
-  animation-delay: -10s;
-  width: 150px;
+	top: 400px;
+	animation-name: cloud-anim;
+	animation-duration: 50s;
+	animation-delay: -10s;
+	width: 150px;
 }
 
 @keyframes cloud-anim {
-  0% {
-    right: -20%;
-  }
-  100% {
-    right: 110%;
-  }
+	0% {
+		right: -20%;
+	}
+	100% {
+		right: 110%;
+	}
 }
 #environment {
-  cursor: none;
+	cursor: none;
 }
 
 #cursor {
-  position: relative;
-  background-image: url("../assets/img/scope.svg");
-  background-position: center center;
-  width: 288px;
-  height: 288px;
-  z-index: 3;
-  pointer-events: none;
-  transform: translate(-333%, -187%);
+	position: relative;
+	background-image: url("../assets/img/scope.svg");
+	background-position: center center;
+	width: 288px;
+	height: 288px;
+	z-index: 3;
+	pointer-events: none;
+	transform: translate(-333%, -187%);
 }
 
 @font-face {
-  font-family: quicksand;
-  src: url("../assets/fonts/quicksand.ttf");
+	font-family: quicksand;
+	src: url("../assets/fonts/quicksand.ttf");
 }
 * {
-  font-family: quicksand;
-  color: #444;
+	font-family: quicksand;
+	color: #444;
 }
 
 nav {
-  position: fixed;
-  background-color: #444;
-  padding: 20px;
-  padding-left: 10%;
-  padding-right: 20%;
-  width: 100%;
-  height: 70px;
-  top: 0;
-  z-index: 4;
-  color: #eee;
-  opacity: 0.8;
-  transition: 0.5s;
+	position: fixed;
+	background-color: #444;
+	padding: 20px;
+	padding-left: 10%;
+	padding-right: 20%;
+	width: 100%;
+	height: 70px;
+	top: 0;
+	z-index: 4;
+	color: #eee;
+	opacity: 0.8;
+	transition: 0.5s;
 }
 nav:hover {
-  cursor: pointer;
-  opacity: 1;
+	cursor: pointer;
+	opacity: 1;
 }
 @media (max-width: 718px) {
-  nav span {
-    transition: 1s ease;
-    font-size: 12px;
-  }
+	nav span {
+		transition: 1s ease;
+		font-size: 12px;
+	}
 }
 
 h1 {
-  position: absolute;
-  top: 12%;
-  font-size: 50px;
-  opacity: 0.3;
-  z-index: 3;
+	position: absolute;
+	top: 12%;
+	font-size: 50px;
+	opacity: 0.3;
+	z-index: 3;
 }
 
 .menu {
-  color: #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	color: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #menu-btn {
-  margin: auto;
+	margin: auto;
 }
 #menu-btn button {
-  position: relative;
-  width: 100px;
-  height: 30px;
-  left: 40%;
-  border: solid 3px #444;
-  border-radius: 7px;
-  transition: 0.2s;
+	position: relative;
+	width: 100px;
+	height: 30px;
+	left: 40%;
+	border: solid 3px #444;
+	border-radius: 7px;
+	transition: 0.2s;
 }
 #menu-btn button:hover {
-  background-color: #444;
-  color: #eee;
+	background-color: #444;
+	color: #eee;
 }
 #menu-btn button:hover {
-  border: solid #eee 2px;
+	border: solid #eee 2px;
 }
 
 #ui-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #kill-interface {
-  position: fixed;
-  min-width: 500px;
-  width: 25%;
-  height: 191px;
-  bottom: -1%;
-  background: rgb(107, 107, 107);
-  background: linear-gradient(0deg, rgb(107, 107, 107) 0%, rgb(146, 146, 146) 41%, rgb(182, 182, 182) 100%);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: 10px solid #444;
-  z-index: 4;
-  opacity: 0.5;
-  transition: 0.5s;
+	position: fixed;
+	min-width: 500px;
+	width: 25%;
+	height: 191px;
+	bottom: -1%;
+	background: rgb(107, 107, 107);
+	background: linear-gradient(
+		0deg,
+		rgb(107, 107, 107) 0%,
+		rgb(146, 146, 146) 41%,
+		rgb(182, 182, 182) 100%
+	);
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border: 10px solid #444;
+	z-index: 4;
+	opacity: 0.5;
+	transition: 0.5s;
 }
 #kill-interface:hover {
-  opacity: 1;
-  cursor: pointer;
+	opacity: 1;
+	cursor: pointer;
 }
 #kill-interface button {
-  position: relative;
-  width: 100px;
-  height: 30px;
-  left: 40%;
-  border: solid 3px #444;
-  border-radius: 7px;
-  transition: 0.2s;
+	position: relative;
+	width: 100px;
+	height: 30px;
+	left: 40%;
+	border: solid 3px #444;
+	border-radius: 7px;
+	transition: 0.2s;
 }
 #kill-interface button:hover {
-  background-color: #444;
-  color: #eee;
+	background-color: #444;
+	color: #eee;
 }
 
 #kill-display {
-  text-align: center;
-  font-size: 40px;
-  color: orangered;
+	text-align: center;
+	font-size: 40px;
+	color: orangered;
 }
 
 .ui-box {
-  box-shadow: 2px 4px 16px -6px rgba(0, 0, 0, 0.75) inset;
-  -webkit-box-shadow: 2px 4px 16px -6px rgba(0, 0, 0, 0.75) inset;
-  -moz-box-shadow: 2px 4px 16px -6px rgba(0, 0, 0, 0.75) inset;
-  padding: 10px;
-  border-radius: 7px;
+	box-shadow: 2px 4px 16px -6px rgba(0, 0, 0, 0.75) inset;
+	-webkit-box-shadow: 2px 4px 16px -6px rgba(0, 0, 0, 0.75) inset;
+	-moz-box-shadow: 2px 4px 16px -6px rgba(0, 0, 0, 0.75) inset;
+	padding: 10px;
+	border-radius: 7px;
 }
 
 .m-10 {
-  margin: 10px !important;
+	margin: 10px !important;
 }
 
 .modal-notif {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .modal-notif--success {
-  color: rgb(78, 240, 146);
+	color: rgb(78, 240, 146);
 }
 .modal-notif--error {
-  color: rgb(251, 104, 50);
+	color: rgb(251, 104, 50);
 }
 
 .modal-content {
-  opacity: 0.9;
+	opacity: 0.9;
 }
 
 /* NOTIF (begin) */
 .notify {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .notify .notifytext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 10px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-  font-size: 12px;
-  opacity: 0.9;
-  border: solid aquamarine 2px;
+	visibility: hidden;
+	width: 160px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -80px;
+	font-size: 12px;
+	opacity: 0.9;
+	border: solid aquamarine 2px;
 }
 .notify .notifytext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
 }
 .notify .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
+	visibility: visible;
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s;
 }
 .notify--btn {
-  width: 30px;
-  background-color: aquamarine;
-  border: solid #888 2px;
-  border-radius: 5px;
+	width: 30px;
+	background-color: aquamarine;
+	border: solid #888 2px;
+	border-radius: 5px;
 }
 
 @-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 /* NOTIF (end) */
 
